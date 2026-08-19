@@ -1,0 +1,133 @@
+/**
+ * BODYWINGS Design-System — zentrale Tokens.
+ *
+ * Einzige Quelle der Wahrheit für Farben, Typografie, Abstände, Radius,
+ * Schatten, Motion und Z-Index (CLAUDE.md §2). Keine Einzelwerte außerhalb
+ * dieser Datei in anderen Stylesheets verwenden.
+ *
+ * Hinweis Breakpoints: CSS Custom Properties funktionieren nicht als
+ * @media-Bedingung (kein Preprocessor im Einsatz, siehe Architekturentscheidung
+ * "kein Build-Zwang"). Die Werte hier sind deshalb die verbindliche Referenz,
+ * @media-Queries in allen anderen Dateien MÜSSEN exakt diese Zahlen verwenden:
+ *   mobile:  bis 599px
+ *   tablet:  600px–959px
+ *   laptop:  960px–1279px
+ *   desktop: ab 1280px
+ */
+
+:root {
+	/* ---------- Farbpalette (§2.1) ---------- */
+	--bw-color-green: #2d4f1e;
+	--bw-color-beige: #f5e6cc;
+	--bw-color-terrakotta: #e27d60;
+	--bw-color-grey: #4a4a4a;
+
+	--bw-color-white: #ffffff;
+	--bw-color-black: #1a1a1a;
+
+	/* ---------- Automatische Kontrastfarbe (§2.2) ----------
+	 * Für jede Theme-Farbe als Hintergrund ist hier die passende Font-Farbe
+	 * hinterlegt. Verwendung über die [data-bw-bg] Utility in base.css —
+	 * niemals Text-Farbe manuell pro Content-Element setzen. */
+	--bw-on-green: var(--bw-color-beige);
+	--bw-on-terrakotta: var(--bw-color-beige);
+	--bw-on-grey: var(--bw-color-beige);
+	--bw-on-beige: var(--bw-color-green);
+
+	/* ---------- Site-Basis ----------
+	 * Bewusst kein Standard-Weiß: Beige ist die neutrale Basis der Palette
+	 * (§2.1) und trägt bereits eine definierte Kontrastfarbe (Green). */
+	--bw-color-page-bg: var(--bw-color-beige);
+	--bw-color-page-text: var(--bw-color-grey);
+	--bw-color-heading-text: var(--bw-color-green);
+	--bw-color-muted: color-mix(in oklab, var(--bw-color-grey) 65%, var(--bw-color-beige));
+	--bw-color-border: color-mix(in oklab, var(--bw-color-grey) 25%, var(--bw-color-beige));
+	/* Elevierte UI-Flächen (Inputs, Cards, Modals) dürfen sich von der
+	 * Beige-Seitenbasis abheben — bewusste Verwendung von Weiß als
+	 * "Oberflächen"-Ton, nicht als Seitenhintergrund. */
+	--bw-color-surface: var(--bw-color-white);
+	--bw-color-focus-ring: var(--bw-color-terrakotta);
+	--bw-color-danger: #b3261e;
+	--bw-color-success: var(--bw-color-green);
+
+	/* ---------- Typografie (§3) ----------
+	 * @font-face für die beiden Familien liegt in base.css und erwartet
+	 * selbst gehostete woff2-Dateien unter assets/fonts/ (siehe TODO dort).
+	 * Bis die echten Dateien vorliegen, greifen die Fallback-Stacks. */
+	--bw-font-heading: 'Special Gothic Condensed One', 'Arial Narrow', Arial, sans-serif;
+	--bw-font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+	--bw-weight-regular: 400;
+	--bw-weight-semibold: 600;
+	--bw-weight-bold: 700;
+
+	--bw-leading-tight: 1.1;
+	--bw-leading-heading: 1.2;
+	--bw-leading-body: 1.6;
+
+	/* Fluide, aber feste globale Größen (§3.1) — clamp() statt Media-Query-
+	 * Duplikate, gilt als "zentral definiert". */
+	--bw-text-h1: clamp(2.25rem, 1.7rem + 2.2vw, 3.75rem);
+	--bw-text-h2: clamp(1.875rem, 1.5rem + 1.5vw, 2.75rem);
+	--bw-text-h3: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+	--bw-text-h4: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+	--bw-text-h5: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+	--bw-text-h6: 1rem;
+	--bw-text-body: 1rem;
+	--bw-text-small: 0.875rem;
+	--bw-text-label: 0.8125rem;
+	--bw-text-button: 0.9375rem;
+	--bw-text-input: 1rem;
+
+	/* ---------- Abstände ---------- */
+	--bw-space-1: 0.25rem;
+	--bw-space-2: 0.5rem;
+	--bw-space-3: 0.75rem;
+	--bw-space-4: 1rem;
+	--bw-space-5: 1.5rem;
+	--bw-space-6: 2rem;
+	--bw-space-7: 3rem;
+	--bw-space-8: 4rem;
+	--bw-space-9: 6rem;
+	--bw-space-10: 8rem;
+
+	/* ---------- Border Radius (§4) ---------- */
+	--bw-radius-sm: 0.5rem;
+	--bw-radius-md: 0.875rem;
+	--bw-radius-lg: 1.25rem;
+	--bw-radius-full: 999px;
+
+	/* ---------- Schatten (dezent, siehe §1 "keine unnötigen Schatten") ---------- */
+	--bw-shadow-sm: 0 1px 2px rgb(26 26 26 / 0.06);
+	--bw-shadow-md: 0 8px 24px rgb(26 26 26 / 0.08);
+	--bw-shadow-lg: 0 16px 40px rgb(26 26 26 / 0.12);
+
+	/* ---------- Container / Layout ---------- */
+	--bw-container-max: 1440px;
+	--bw-container-padding: clamp(1rem, 3vw, 3rem);
+
+	/* ---------- Motion (§21/§23) ---------- */
+	--bw-duration-fast: 150ms;
+	--bw-duration-normal: 280ms;
+	--bw-duration-slow: 480ms;
+	--bw-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+	--bw-ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+	--bw-ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+	/* ---------- Z-Index-Skala (semantische Layer statt Zufallszahlen) ---------- */
+	--bw-z-dropdown: 20;
+	--bw-z-header: 30;
+	--bw-z-filter-panel: 35;
+	--bw-z-offcanvas: 40;
+	--bw-z-modal: 50;
+	--bw-z-toast: 60;
+}
+
+/* Reduced-Motion global auf 0 setzen; Funktionalität bleibt erhalten (§25). */
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--bw-duration-fast: 0ms;
+		--bw-duration-normal: 0ms;
+		--bw-duration-slow: 0ms;
+	}
+}

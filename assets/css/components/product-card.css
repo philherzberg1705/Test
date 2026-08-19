@@ -1,0 +1,127 @@
+/**
+ * Produktkarte (§8): Bild → Varianten → Titel → Preis. Bewusst reduziert,
+ * keine zusätzlichen Informationen auf der Card.
+ */
+
+.bw-product-card {
+	display: flex;
+	flex-direction: column;
+}
+
+.bw-product-card__media {
+	position: relative;
+	display: block;
+	aspect-ratio: 4 / 5;
+	overflow: hidden;
+	border-radius: var(--bw-radius-lg);
+	background: var(--bw-color-surface);
+}
+
+.bw-product-card__image {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	padding: var(--bw-space-4);
+	transition: opacity var(--bw-duration-normal) var(--bw-ease-standard);
+}
+
+.bw-product-card__image--primary {
+	z-index: 1;
+	opacity: 1;
+}
+
+.bw-product-card__image--secondary {
+	z-index: 2;
+	opacity: 0;
+}
+
+/* Reiner CSS-Hover — kein JS-Ersatz auf Touch-Geräten (§10). */
+.bw-product-card__media:hover .bw-product-card__image--secondary {
+	opacity: 1;
+}
+
+.bw-product-card__image.is-swapping {
+	opacity: 0;
+}
+
+/* §11: automatischer Schatten bei transparenten Produktbildern. */
+.bw-product-card__image--transparent {
+	filter: drop-shadow(0 10px 18px rgb(26 26 26 / 0.16));
+}
+
+.bw-wishlist-btn--icon {
+	position: absolute;
+	top: var(--bw-space-2);
+	right: var(--bw-space-2);
+	z-index: 3;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: var(--bw-radius-full);
+	background: color-mix(in oklab, var(--bw-color-surface) 85%, transparent);
+	backdrop-filter: blur(4px);
+	color: var(--bw-color-page-text);
+}
+
+.bw-wishlist-btn--icon .bw-icon {
+	width: 18px;
+	height: 18px;
+}
+
+.bw-product-card__variants {
+	display: flex;
+	gap: var(--bw-space-2);
+	margin-top: var(--bw-space-3);
+}
+
+.bw-swatch {
+	width: 28px;
+	height: 28px;
+	border-radius: var(--bw-radius-full);
+	border: 2px solid transparent;
+	background-color: var(--bw-color-border);
+	background-size: cover;
+	background-position: center;
+	transition: border-color var(--bw-duration-fast) var(--bw-ease-standard),
+		transform var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+.bw-swatch:hover {
+	transform: scale(1.08);
+}
+
+.bw-swatch.is-active {
+	border-color: var(--bw-color-green);
+}
+
+.bw-product-card__title {
+	display: block;
+	margin-top: var(--bw-space-3);
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-body);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	color: var(--bw-color-heading-text);
+}
+
+.bw-product-card__price {
+	display: block;
+	margin-top: var(--bw-space-1);
+	font-size: var(--bw-text-body);
+	color: var(--bw-color-page-text);
+}
+
+.bw-product-card__price del {
+	opacity: 0.5;
+	margin-right: var(--bw-space-2);
+	font-size: var(--bw-text-small);
+}
+
+.bw-product-card__price ins {
+	text-decoration: none;
+	color: var(--bw-color-terrakotta);
+}

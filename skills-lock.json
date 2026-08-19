@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-a11y-aria-patterns": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-a11y/frontend-a11y-aria-patterns/SKILL.md",
+      "computedHash": "0790da2c1c4163638bf5fd7c1e3545307dfdbd01b1d3ba0640aa1db1b9ef6da7"
+    },
+    "frontend-a11y-focus-keyboard-inert": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-a11y/frontend-a11y-focus-keyboard-inert/SKILL.md",
+      "computedHash": "673c065148032ab064f1dd67508530afc69aaf9855fc52f7cf2d9373bc9c0471"
+    },
+    "frontend-a11y-motion-contrast-wcag22": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-a11y/frontend-a11y-motion-contrast-wcag22/SKILL.md",
+      "computedHash": "8872b2f76d16772c014c7a2987bcd4b96d16ea8a1220eb9df88510bdde8f3e3f"
+    },
+    "frontend-agents-a11y-perf-consistency-auditor": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-agents/frontend-agents-a11y-perf-consistency-auditor/SKILL.md",
+      "computedHash": "ae2a2112acb33e73ceddc6a500c990fc7c5d016eb69b69dd7b254ba7dcb0d50b"
+    },
+    "frontend-agents-design-system-validator": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-agents/frontend-agents-design-system-validator/SKILL.md",
+      "computedHash": "db2bf2ff71c8185b744934c1ec4207f2864369a09d7340ae8d40efa355e58e14"
+    },
+    "frontend-component-data-tables-command-palette": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-component/frontend-component-data-tables-command-palette/SKILL.md",
+      "computedHash": "f5d47e82b4d0022ad6acf131925d45309ddc6066390f04414b3275a3a87b2444"
+    },
+    "frontend-component-modal-toast-system": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-component/frontend-component-modal-toast-system/SKILL.md",
+      "computedHash": "69cb95806ca541b471a1e8e04b3abc5ed0269c6016d9c9c8b942ef9291843867"
+    },
+    "frontend-core-architecture": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-core/frontend-core-architecture/SKILL.md",
+      "computedHash": "4ff29aeafa91970b396eda9a8fc5ef5212d5ed18e333696d6352a85ec9cfbce3"
+    },
+    "frontend-core-design-philosophy": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-core/frontend-core-design-philosophy/SKILL.md",
+      "computedHash": "00263b032ffc2b4a4fb19ed9512c90d24d97c7bbbd66a28f25455b1df9cfca75"
+    },
+    "frontend-core-web-standards-baseline": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-core/frontend-core-web-standards-baseline/SKILL.md",
+      "computedHash": "3b515297ff3d4321306f4484ed728b864874bf8cef6b2a82d6d979e70266ccdb"
+    },
+    "frontend-design": {
+      "source": "anthropics/claude-code",
+      "sourceType": "github",
+      "skillPath": "plugins/frontend-design/skills/frontend-design/SKILL.md",
+      "computedHash": "3e0be122a3db8206b6d0d6b07cca898b5c75fb9b7b2101abe143fb2851734d2e"
+    },
+    "frontend-errors-animation-jank": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-errors/frontend-errors-animation-jank/SKILL.md",
+      "computedHash": "d1124391d414d66775ca8ecf4023297341c83642d7d520c628bf3027746eb129"
+    },
+    "frontend-errors-cascade-conflicts": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-errors/frontend-errors-cascade-conflicts/SKILL.md",
+      "computedHash": "961d3c7e2ac6c2fd54efd7dd78d7dede2425ac603f7b52a7efa066490f615e6e"
+    },
+    "frontend-errors-layout-pitfalls": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-errors/frontend-errors-layout-pitfalls/SKILL.md",
+      "computedHash": "8d681730824f6853f46172056a8e3a74b6f042dd1163f88ea31b67d89ded0239"
+    },
+    "frontend-errors-units-rendering-viewport": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-errors/frontend-errors-units-rendering-viewport/SKILL.md",
+      "computedHash": "708c0b374d6dd97f9b0b45555433981842d7a275b992d9079689ea81bcfb7a93"
+    },
+    "frontend-impl-design-tokens": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-impl/frontend-impl-design-tokens/SKILL.md",
+      "computedHash": "9c1cb3cb6e16d95d11648a547a0feb7aeff02214fb6d940ab98dfc00ea85777c"
+    },
+    "frontend-impl-popover-dialog-anchor": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-impl/frontend-impl-popover-dialog-anchor/SKILL.md",
+      "computedHash": "1a1269c27e68a33e1154a2ac0931b9a717955525b37646315ff3990ec34388f2"
+    },
+    "frontend-impl-responsive-layout-fluid": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-impl/frontend-impl-responsive-layout-fluid/SKILL.md",
+      "computedHash": "e5ee05b44c575a5d237d72d92569a885ab57060e91e6682e67fa2a6c9eeb49e7"
+    },
+    "frontend-impl-typography-system": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-impl/frontend-impl-typography-system/SKILL.md",
+      "computedHash": "3f1c3ebc96a0a4288eb3d31a404730aa06fbf0a1fb1b57521cbb3e4e4d5f58ab"
+    },
+    "frontend-impl-view-transitions-scroll-animations": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-impl/frontend-impl-view-transitions-scroll-animations/SKILL.md",
+      "computedHash": "637149dd85520730ed95a165f6d08e37626340e9bf61badfb9187a85310bdc34"
+    },
+    "frontend-impl-web-components": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-impl/frontend-impl-web-components/SKILL.md",
+      "computedHash": "5a60a413b0042702223c83ffb2c96f5cd2640f3ef66acfcb56a4023289043b29"
+    },
+    "frontend-perf-animation-gpu-containment": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-perf/frontend-perf-animation-gpu-containment/SKILL.md",
+      "computedHash": "485647ab49d89fc664f5f70cef777110d01f4c42cbbc9d91de0a9936d9259950"
+    },
+    "frontend-perf-core-web-vitals-inp": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-perf/frontend-perf-core-web-vitals-inp/SKILL.md",
+      "computedHash": "752992437b3c03d8949c4ea878c72a0086228463d99e3937fd9e621b5a2b28f8"
+    },
+    "frontend-syntax-css-cascade-layers-scope": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-syntax/frontend-syntax-css-cascade-layers-scope/SKILL.md",
+      "computedHash": "642ebe410207890f0da09f5757f80c89b58b0fa38b44a786e892a7e49316ec58"
+    },
+    "frontend-syntax-css-color-modern": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-syntax/frontend-syntax-css-color-modern/SKILL.md",
+      "computedHash": "debb0e3a87a3c1ecff95f6b039a9f19a75850e75f5b9ab4c4da94377ac08143a"
+    },
+    "frontend-syntax-css-container-queries": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-syntax/frontend-syntax-css-container-queries/SKILL.md",
+      "computedHash": "e2341a445be678f72aa7a7bc93c0da834d9bd5e69210b08e5da441e4341c50fa"
+    },
+    "frontend-syntax-css-grid-subgrid": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-syntax/frontend-syntax-css-grid-subgrid/SKILL.md",
+      "computedHash": "4058229f4c0d1d4115126f3108074c8fa92ea0a40ff089b031825f19347a5034"
+    },
+    "frontend-syntax-css-has-selector": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-syntax/frontend-syntax-css-has-selector/SKILL.md",
+      "computedHash": "2515ec59a6930d19bd4aaa073e2ce0404226d83fc171504055c47e5e615a0fde"
+    },
+    "frontend-syntax-css-nesting-logical-properties": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-syntax/frontend-syntax-css-nesting-logical-properties/SKILL.md",
+      "computedHash": "6d14662c61b021391253afd47d8dcc40d466d0099637c84103a64373caa8318f"
+    },
+    "frontend-syntax-html5-form": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-syntax/frontend-syntax-html5-form/SKILL.md",
+      "computedHash": "f4c29f7f08e3b0cb2046ca19e23acd6f43ea86ae94239315ed9719a529e3fb4e"
+    },
+    "frontend-syntax-html5-semantic": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-syntax/frontend-syntax-html5-semantic/SKILL.md",
+      "computedHash": "49fc9e43bcbf4f135fe0581c3e00f2aa3bb3040a7a48e86b0c429357e887ffef"
+    },
+    "frontend-syntax-js-es2024-ts-dom": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-syntax/frontend-syntax-js-es2024-ts-dom/SKILL.md",
+      "computedHash": "1bc0b8a66799c61c0a1cf003bb339543e3b381810e13d5808833f9a57b608127"
+    },
+    "frontend-theming-color-palette-oklch": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-theming/frontend-theming-color-palette-oklch/SKILL.md",
+      "computedHash": "47a42794fb70646563da264c0414676b64353b6af84dada9540e259a5a53143e"
+    },
+    "frontend-theming-dark-light-mode": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-theming/frontend-theming-dark-light-mode/SKILL.md",
+      "computedHash": "83594538799579a31b7b1c4b75519f2dcf74ccceae6ed1fd9ea598306c469018"
+    },
+    "frontend-ui": {
+      "source": "WomenDefiningAI/claude-code-skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-ui/SKILL.md",
+      "computedHash": "2630761edd834b2eb737674b4cfb97cc70d7b847d4f89a087bbb52e6303414f9"
+    },
+    "frontend-visual-glassmorphism-backdrop": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-visual/frontend-visual-glassmorphism-backdrop/SKILL.md",
+      "computedHash": "1d45de5543e05f7cad9e4bf2d1719caedff6c5c4ac9e0e28e09cc3356fbeaaa2"
+    },
+    "frontend-visual-gradients": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-visual/frontend-visual-gradients/SKILL.md",
+      "computedHash": "9ffb3a6f3c975a651f8d42b80f8e7beee7ff7c67f32df923f48aa43cef8fe274"
+    },
+    "frontend-visual-micro-interactions": {
+      "source": "OpenAEC-Foundation/Frontend-Design-Claude-Skill-Package",
+      "sourceType": "github",
+      "skillPath": "skills/source/frontend-visual/frontend-visual-micro-interactions/SKILL.md",
+      "computedHash": "dff39ae1c77ffd7dab40995331878a55ffc0b676e745b21b0aa80f0512dd9f2b"
+    },
+    "gsap-core": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-core/SKILL.md",
+      "computedHash": "c4a01101d9e1aafbf4b49f75d74f9349790d8741981ba0237c990093863035a6"
+    },
+    "gsap-frameworks": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-frameworks/SKILL.md",
+      "computedHash": "4852e85a48088d9044b08ebd1db607915b628c0c3ec7e04300713f546728fbdf"
+    },
+    "gsap-performance": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-performance/SKILL.md",
+      "computedHash": "863842ac2d7aee53fd4f0025c960173d7ad3e658a5715b89b2211fa280213c1f"
+    },
+    "gsap-plugins": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-plugins/SKILL.md",
+      "computedHash": "791bda0e6e460511fe82a78e745db519b88ffaeeab4d04a74879a03ca4f41740"
+    },
+    "gsap-react": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-react/SKILL.md",
+      "computedHash": "7d3b52822681a4158e371f895c58fb7030ecaf33f585a534b7162f9e92c5d893"
+    },
+    "gsap-scrolltrigger": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-scrolltrigger/SKILL.md",
+      "computedHash": "1cdc5647693783cb7a662d84a5de434c88a051ed56b4d33597c9b5782b5973e6"
+    },
+    "gsap-timeline": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-timeline/SKILL.md",
+      "computedHash": "54981c2feec5a9c0d57988aeb32315af32bdeadd261550d5e9db7a7b1f08b487"
+    },
+    "gsap-utils": {
+      "source": "greensock/gsap-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gsap-utils/SKILL.md",
+      "computedHash": "1ab2387f6e694718a4f1b5acf2a4ab16e1b884c3428adf5f6b26d830f00826cf"
+    }
+  }
+}

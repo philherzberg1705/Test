@@ -1,0 +1,121 @@
+/**
+ * Shop-Archiv (§13-Vorbereitung): Grid + Toolbar. Der Filter-Bereich
+ * selbst kommt in Task 10 dazu (bodywings_shop_before_grid Hook).
+ */
+
+.bw-shop {
+	padding-block: var(--bw-space-7) var(--bw-space-9);
+}
+
+.bw-shop__header {
+	margin-bottom: var(--bw-space-6);
+}
+
+.bw-shop__layout {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--bw-space-6);
+}
+
+@media (min-width: 960px) {
+	.bw-shop__layout {
+		grid-template-columns: 260px 1fr;
+		align-items: start;
+	}
+}
+
+.bw-shop__content.is-loading .bw-product-grid,
+.bw-shop__content.is-loading .bw-shop__result-count {
+	opacity: 0.5;
+	pointer-events: none;
+	transition: opacity var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+.bw-shop__title {
+	font-size: var(--bw-text-h2);
+}
+
+.bw-shop__toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--bw-space-3);
+	margin-bottom: var(--bw-space-5);
+}
+
+.bw-shop__ordering select {
+	padding: var(--bw-space-2) var(--bw-space-3);
+	border: 1px solid var(--bw-color-border);
+	border-radius: var(--bw-radius-sm);
+	background: var(--bw-color-surface);
+	font-size: var(--bw-text-small);
+}
+
+.bw-product-grid,
+.related.products ul.products,
+.upsells.products ul.products {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--bw-space-5) var(--bw-space-4);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@media (min-width: 600px) {
+	.bw-product-grid,
+	.related.products ul.products,
+	.upsells.products ul.products {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (min-width: 1280px) {
+	.bw-product-grid,
+	.related.products ul.products,
+	.upsells.products ul.products {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.related.products,
+.upsells.products {
+	margin-top: var(--bw-space-9);
+}
+
+.related.products > h2,
+.upsells.products > h2 {
+	font-size: var(--bw-text-h3);
+	margin-bottom: var(--bw-space-5);
+}
+
+.bw-shop .woocommerce-pagination {
+	margin-top: var(--bw-space-8);
+	display: flex;
+	justify-content: center;
+}
+
+.bw-shop .woocommerce-pagination ul {
+	display: flex;
+	gap: var(--bw-space-2);
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.bw-shop .woocommerce-pagination a,
+.bw-shop .woocommerce-pagination span {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 40px;
+	height: 40px;
+	border-radius: var(--bw-radius-sm);
+	padding-inline: var(--bw-space-2);
+}
+
+.bw-shop .woocommerce-pagination .current {
+	background: var(--bw-color-green);
+	color: var(--bw-on-green);
+}

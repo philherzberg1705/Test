@@ -1,0 +1,99 @@
+/**
+ * Auth-Bereich (§17). WooCommerce liefert Formularverarbeitung, hier nur
+ * Tab-Leiste + Panel-Übergänge + Feld-Layout.
+ */
+
+.bw-auth {
+	max-width: 420px;
+	margin-inline: auto;
+	padding-block: var(--bw-space-8) var(--bw-space-9);
+}
+
+.bw-auth__tabs {
+	display: flex;
+	gap: var(--bw-space-5);
+	border-bottom: 1px solid var(--bw-color-border);
+	margin-bottom: var(--bw-space-6);
+}
+
+.bw-auth__tab {
+	padding-bottom: var(--bw-space-3);
+	font-family: var(--bw-font-heading);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	color: var(--bw-color-muted);
+	border-bottom: 2px solid transparent;
+	transition: color var(--bw-duration-fast) var(--bw-ease-standard), border-color var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+.bw-auth__tab.is-active {
+	color: var(--bw-color-heading-text);
+	border-bottom-color: var(--bw-color-green);
+}
+
+.bw-auth__tab--link {
+	color: var(--bw-color-muted);
+}
+
+@keyframes bw-auth-fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.bw-auth__panel.is-active {
+	animation: bw-auth-fade-in var(--bw-duration-normal) var(--bw-ease-out);
+}
+
+.bw-auth .form-row {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-1);
+	margin-bottom: var(--bw-space-4);
+}
+
+.bw-auth .form-row label {
+	font-family: var(--bw-font-body);
+	text-transform: none;
+	letter-spacing: normal;
+	font-size: var(--bw-text-small);
+}
+
+.bw-auth__remember {
+	flex-direction: row;
+	align-items: center;
+}
+
+.bw-auth__remember label {
+	display: flex;
+	align-items: center;
+	gap: var(--bw-space-2);
+}
+
+.bw-auth .required {
+	color: var(--bw-color-terrakotta);
+}
+
+.bw-auth .woocommerce-error,
+.bw-auth .woocommerce-message {
+	padding: var(--bw-space-3) var(--bw-space-4);
+	border-radius: var(--bw-radius-sm);
+	margin-bottom: var(--bw-space-5);
+	list-style: none;
+	font-size: var(--bw-text-small);
+}
+
+.bw-auth .woocommerce-error {
+	background: color-mix(in oklab, var(--bw-color-danger) 12%, var(--bw-color-page-bg));
+	color: var(--bw-color-danger);
+}
+
+.bw-auth .woocommerce-message {
+	background: color-mix(in oklab, var(--bw-color-green) 12%, var(--bw-color-page-bg));
+	color: var(--bw-color-green);
+}
