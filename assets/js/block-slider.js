@@ -6,10 +6,20 @@
  * (progressive enhancement: Pfeil-Buttons sind nur das Komfort-Add-on).
  *
  * Markup-Vertrag:
- *   [data-bw-slider]        Wrapper
- *   [data-bw-slider-track]  scrollbarer Container, Kinder = Slides
- *   [data-bw-slider-prev]   optionaler "Zurück"-Button
- *   [data-bw-slider-next]   optionaler "Weiter"-Button
+ *   [data-bw-slider]              Wrapper
+ *   [data-bw-slider-track]        scrollbarer Container, Kinder = Slides
+ *   [data-bw-slider-prev]         optionaler "Zurück"-Button
+ *   [data-bw-slider-next]         optionaler "Weiter"-Button
+ *   [data-bw-autoplay]            Wrapper-Attribut: durchgehendes Loop-
+ *                                 Scrollen aktiv (CSS-Animation, siehe
+ *                                 blocks.css) statt Snap-Scrolling.
+ *   [data-bw-slider-playpause]    Play/Pause-Button für den Autoplay-Loop.
+ *
+ * Pausieren bei Hover/Fokus läuft rein über CSS (:hover/:focus-within,
+ * siehe blocks.css) — hier wird nur die .is-paused-Klasse für die
+ * EXPLIZITE Pause per Button verwaltet, sie bleibt unabhängig vom
+ * flüchtigen Hover-Zustand bestehen (§25: für Tastatur-/Touch-Nutzer:innen
+ * ohne Hover trotzdem vollständig steuerbar).
  */
 ( function () {
 	'use strict';
@@ -59,6 +69,27 @@
 		}, { passive: true } );
 
 		updateButtonState( slider, track );
+
+		var playPauseBtn = slider.querySelector( '[data-bw-slider-playpause]' );
+		if ( playPauseBtn ) {
+			playPauseBtn.addEventListener( 'click', function () {
+				var isPaused = slider.classList.toggle( 'is-paused' );
+				var pauseIcon = playPauseBtn.querySelector( '[data-bw-slider-playpause-pause-icon]' );
+				var playIcon = playPauseBtn.querySelector( '[data-bw-slider-playpause-play-icon]' );
+
+				if ( pauseIcon ) {
+					pauseIcon.hidden = isPaused;
+				}
+				if ( playIcon ) {
+					playIcon.hidden = ! isPaused;
+				}
+
+				playPauseBtn.setAttribute(
+					'aria-label',
+					isPaused ? playPauseBtn.dataset.labelPlay : playPauseBtn.dataset.labelPause
+				);
+			} );
+		}
 	}
 
 	function initAllSliders() {

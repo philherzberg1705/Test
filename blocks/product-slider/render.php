@@ -62,21 +62,58 @@ $bw_products = wc_get_products( $bw_query_args );
 if ( ! $bw_products ) {
 	return;
 }
+
+$bw_autoplay = ! empty( $attributes['autoplay'] ) && count( $bw_products ) > 1;
+// Lauftempo skaliert mit der Produktanzahl, damit ein einzelnes Produkt
+// im Loop immer gleich lang zu sehen ist, egal wie viele es insgesamt
+// sind — keine zusätzliche Backend-Einstellung nötig (§29).
+$bw_marquee_seconds = max( 20, count( $bw_products ) * 4 );
 ?>
-<div <?php echo get_block_wrapper_attributes( array( 'class' => 'bw-block bw-product-slider' ) ); ?><?php echo bodywings_block_bg_attr( $attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+<div
+	<?php echo get_block_wrapper_attributes( array( 'class' => 'bw-block bw-product-slider' ) ); ?><?php echo bodywings_block_bg_attr( $attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+>
 	<div class="bw-block__inner">
 		<?php if ( $bw_heading ) : ?>
 			<h2 class="bw-product-slider__heading"><?php echo wp_kses_post( $bw_heading ); ?></h2>
 		<?php endif; ?>
 
-		<div class="bw-slider" data-bw-slider>
-			<ul class="bw-slider__track bw-product-slider__track" data-bw-slider-track tabindex="0" role="region" aria-label="<?php esc_attr_e( 'Produkte, horizontal scrollbar', 'bodywings' ); ?>">
+		<div
+			class="bw-slider"
+			data-bw-slider
+			<?php echo $bw_autoplay ? 'data-bw-autoplay' : ''; ?>
+			<?php echo $bw_autoplay ? 'style="--bw-marquee-duration:' . esc_attr( (string) $bw_marquee_seconds ) . 's;"' : ''; ?>
+		>
+			<ul
+				class="bw-slider__track bw-product-slider__track"
+				data-bw-slider-track
+				<?php echo $bw_autoplay ? '' : 'tabindex="0" role="region" aria-label="' . esc_attr__( 'Produkte, horizontal scrollbar', 'bodywings' ) . '"'; ?>
+			>
 				<?php foreach ( $bw_products as $bw_product ) : ?>
 					<li class="bw-product-slider__item"><?php bodywings_render_product_card( $bw_product ); ?></li>
 				<?php endforeach; ?>
+
+				<?php if ( $bw_autoplay ) : ?>
+					<?php // Zweiter, für Tastatur/Screenreader ausgeblendeter Satz für den nahtlosen Loop (§25) — die "echten" Karten oben bleiben die einzigen erreichbaren. ?>
+					<?php foreach ( $bw_products as $bw_product ) : ?>
+						<li class="bw-product-slider__item" inert aria-hidden="true"><?php bodywings_render_product_card( $bw_product ); ?></li>
+					<?php endforeach; ?>
+				<?php endif; ?>
 			</ul>
 
 			<div class="bw-slider__nav">
+				<?php if ( $bw_autoplay ) : ?>
+					<button
+						type="button"
+						class="bw-slider__playpause"
+						data-bw-slider-playpause
+						data-label-pause="<?php echo esc_attr__( 'Automatisches Weiterscrollen pausieren', 'bodywings' ); ?>"
+						data-label-play="<?php echo esc_attr__( 'Automatisches Weiterscrollen fortsetzen', 'bodywings' ); ?>"
+						aria-label="<?php esc_attr_e( 'Automatisches Weiterscrollen pausieren', 'bodywings' ); ?>"
+					>
+						<span data-bw-slider-playpause-pause-icon><?php echo bodywings_icon( 'pause' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span data-bw-slider-playpause-play-icon hidden><?php echo bodywings_icon( 'play' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					</button>
+				<?php endif; ?>
 				<button type="button" data-bw-slider-prev aria-label="<?php esc_attr_e( 'Zurück', 'bodywings' ); ?>"><?php echo bodywings_icon( 'chevron-left' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
 				<button type="button" data-bw-slider-next aria-label="<?php esc_attr_e( 'Weiter', 'bodywings' ); ?>"><?php echo bodywings_icon( 'chevron-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
 			</div>

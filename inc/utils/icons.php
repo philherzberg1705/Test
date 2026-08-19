@@ -28,6 +28,8 @@ function bodywings_icon( string $name ): string {
 		'chevron-down'  => '<path d="M5 9l7 7 7-7"/>',
 		'star'   => '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2 5.9-.8Z"/>',
 		'check'  => '<path d="M4 12.5l5 5L20 6"/>',
+		'pause'  => '<rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor" stroke="none"/>',
+		'play'   => '<path d="M7 4.5v15l13-7.5Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round"/>',
 	);
 
 	if ( ! isset( $icons[ $name ] ) ) {

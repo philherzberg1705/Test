@@ -85,6 +85,67 @@
 	height: 20px;
 }
 
+/* ---------- Autoplay-Loop (Produkt-Slider u.a., §21/§23) ----------
+   Durchgehende, ruckelfreie Bewegung per CSS-Animation (transform,
+   reiner Compositor-Job, §26) statt eines JS-Intervalls, das schrittweise
+   von Slide zu Slide springt. Der Inhalt liegt serverseitig doppelt im
+   Markup (zweiter Satz inert/aria-hidden), translateX(-50%) verschiebt
+   dadurch exakt um die Breite eines Satzes — nahtloser Loop.
+   animation-play-state: paused deckt sowohl Hover als auch Tastatur-
+   Fokus (:focus-within) als auch die explizite Pause-Taste (.is-paused)
+   in einer Regel ab. */
+.bw-slider__playpause {
+	display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.bw-slider[data-bw-autoplay] [data-bw-slider-prev],
+	.bw-slider[data-bw-autoplay] [data-bw-slider-next] {
+		display: none;
+	}
+
+	.bw-slider[data-bw-autoplay] .bw-slider__playpause {
+		display: inline-flex;
+	}
+
+	/* .bw-slider__track wird per width:max-content so breit wie beide
+	   Kartensätze zusammen — geclippt wird deshalb am WRAPPER, nicht am
+	   Track selbst (der ist ja absichtlich breiter als sein Container). */
+	.bw-slider[data-bw-autoplay] {
+		overflow: hidden;
+	}
+
+	.bw-slider[data-bw-autoplay] .bw-slider__track {
+		scroll-snap-type: none;
+		width: max-content;
+		animation: bw-marquee var(--bw-marquee-duration, 30s) linear infinite;
+	}
+
+	.bw-slider[data-bw-autoplay]:hover .bw-slider__track,
+	.bw-slider[data-bw-autoplay]:focus-within .bw-slider__track,
+	.bw-slider[data-bw-autoplay].is-paused .bw-slider__track {
+		animation-play-state: paused;
+	}
+
+	@keyframes bw-marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+}
+
+/* Ohne Bewegungswunsch: kein Auto-Loop, normaler manuell scrollbarer
+   Slider mit Zurück/Weiter — der zweite (sonst per Loop benötigte)
+   Kartensatz entfällt komplett statt nur unsichtbar herumzuliegen. */
+@media (prefers-reduced-motion: reduce) {
+	.bw-slider[data-bw-autoplay] [inert] {
+		display: none;
+	}
+}
+
 /* ---------- Hero (groß) ---------- */
 .bw-hero-big {
 	position: relative;

@@ -11,6 +11,7 @@
 	var PanelBody = wp.components.PanelBody;
 	var SelectControl = wp.components.SelectControl;
 	var RangeControl = wp.components.RangeControl;
+	var ToggleControl = wp.components.ToggleControl;
 	var Spinner = wp.components.Spinner;
 
 	var SOURCES = [
@@ -71,6 +72,16 @@
 							onChange: function ( v ) { setAttributes( { count: v } ); },
 							min: 2,
 							max: 20,
+						} )
+					),
+					el(
+						PanelBody,
+						{ title: __( 'Automatisches Scrollen', 'bodywings' ), initialOpen: false },
+						el( ToggleControl, {
+							label: __( 'Automatisch durchlaufen lassen', 'bodywings' ),
+							help: __( 'Läuft durchgehend ohne Stocken; hält an, sobald die Maus über dem Slider ist oder ein Element fokussiert wird, damit die Produktkarten normal bedienbar bleiben. Zusätzlich per Pause-Button steuerbar.', 'bodywings' ),
+							checked: !! attributes.autoplay,
+							onChange: function ( v ) { setAttributes( { autoplay: v } ); },
 						} )
 					),
 					bw.BgColorControl( attributes.bgColor, setAttributes )
