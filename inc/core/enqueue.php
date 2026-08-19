@@ -69,6 +69,27 @@ function bodywings_enqueue_assets(): void {
 
 	$js_dir = BODYWINGS_DIR . '/assets/js';
 
+	// Nur auf Seiten mit Produktkarten laden (§26 — keine unnötigen Assets).
+	if ( function_exists( 'bodywings_is_product_grid_context' ) && bodywings_is_product_grid_context() ) {
+		wp_enqueue_style(
+			'bodywings-product-card',
+			BODYWINGS_URI . '/assets/css/components/product-card.css',
+			array( 'bodywings-base' ),
+			bodywings_asset_version( $css_dir . '/components/product-card.css' )
+		);
+
+		wp_enqueue_script(
+			'bodywings-product-card',
+			BODYWINGS_URI . '/assets/js/product-card.js',
+			array( 'bodywings-core' ),
+			bodywings_asset_version( $js_dir . '/product-card.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
+
 	wp_enqueue_script(
 		'bodywings-core',
 		BODYWINGS_URI . '/assets/js/core.js',
