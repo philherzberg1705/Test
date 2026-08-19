@@ -168,6 +168,17 @@ function bodywings_enqueue_assets(): void {
 	);
 
 	wp_enqueue_script(
+		'bodywings-search',
+		BODYWINGS_URI . '/assets/js/ajax/search.js',
+		array( 'bodywings-offcanvas' ),
+		bodywings_asset_version( $js_dir . '/ajax/search.js' ),
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
+	);
+
+	wp_enqueue_script(
 		'bodywings-newsletter',
 		BODYWINGS_URI . '/assets/js/ajax/newsletter.js',
 		array( 'bodywings-core' ),
