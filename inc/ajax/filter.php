@@ -34,13 +34,20 @@ function bodywings_ajax_filter_products(): void {
 		);
 	}
 
-	$query_args = array(
-		'post_type'      => 'product',
-		'post_status'    => 'publish',
-		'posts_per_page' => wc_get_default_products_per_row() * wc_get_default_product_rows_per_page(),
-		'paged'          => $paged,
-		'orderby'        => 'menu_order title',
-		'order'          => 'ASC',
+	$orderby = isset( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : '';
+
+	// Dieselbe Sortierauflösung wie WooCommerce selbst (Preis/Bewertung/
+	// Neuheit brauchen z.B. einen meta_key) — §31 statt eigener Logik.
+	$ordering_args = WC()->query->get_catalog_ordering_args( $orderby );
+
+	$query_args = array_merge(
+		array(
+			'post_type'      => 'product',
+			'post_status'    => 'publish',
+			'posts_per_page' => wc_get_default_products_per_row() * wc_get_default_product_rows_per_page(),
+			'paged'          => $paged,
+		),
+		$ordering_args
 	);
 
 	if ( $tax_parts ) {

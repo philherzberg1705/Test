@@ -12,6 +12,10 @@
 			pagination: document.querySelector( '[data-bw-shop-pagination]' ),
 			resultCount: document.querySelector( '[data-bw-shop-result-count]' ),
 			content: document.querySelector( '.bw-shop__content' ),
+			// Sortierung ist WooCommerce-Standardmarkup (eigenes <form>, kein
+			// Teil von [data-bw-filter-form]) — hier separat eingebunden, damit
+			// ein Sortierwechsel ebenfalls per AJAX läuft statt per Reload (§13).
+			ordering: document.querySelector( '.woocommerce-ordering select[name="orderby"]' ),
 		};
 	}
 
@@ -26,6 +30,45 @@
 		return params;
 	}
 
+	function currentParams() {
+		var els = getShopEls();
+		var params = els.form ? serializeForm( els.form ) : new URLSearchParams();
+
+		if ( els.ordering && els.ordering.value ) {
+			params.set( 'orderby', els.ordering.value );
+		}
+
+		return params;
+	}
+
+	/**
+	 * Bringt Filterformular + Sortierung mit einem per Browser-Back/Forward
+	 * wiederhergestellten Query-State in Einklang (§13 "Back/Forward
+	 * sinnvoll unterstützen") — sonst zeigt das Panel nach einem
+	 * Verlaufswechsel veraltete Checkbox-/Preis-/Sortierwerte.
+	 */
+	function syncFormFromParams( params ) {
+		var els = getShopEls();
+
+		if ( els.form ) {
+			Array.prototype.forEach.call( els.form.elements, function ( field ) {
+				if ( ! field.name || 'button' === field.type || 'submit' === field.type ) {
+					return;
+				}
+
+				if ( 'checkbox' === field.type ) {
+					field.checked = params.getAll( field.name ).indexOf( field.value ) !== -1;
+				} else {
+					field.value = params.get( field.name ) || '';
+				}
+			} );
+		}
+
+		if ( els.ordering ) {
+			els.ordering.value = params.get( 'orderby' ) || els.ordering.value;
+		}
+	}
+
 	function fetchProducts( params, page, pushState ) {
 		var els = getShopEls();
 		if ( ! els.form || ! els.grid ) {
@@ -38,6 +81,7 @@
 		}
 
 		els.content.classList.add( 'is-loading' );
+		els.grid.setAttribute( 'aria-busy', 'true' );
 
 		var body = new URLSearchParams( params.toString() );
 		body.set( 'action', 'bodywings_filter_products' );
@@ -88,6 +132,7 @@
 			} )
 			.finally( function () {
 				els.content.classList.remove( 'is-loading' );
+				els.grid.setAttribute( 'aria-busy', 'false' );
 			} );
 	}
 
@@ -96,7 +141,7 @@
 		if ( ! els.form ) {
 			return;
 		}
-		fetchProducts( serializeForm( els.form ), 1, pushState !== false );
+		fetchProducts( currentParams(), 1, pushState !== false );
 	}
 
 	function initFilter() {
@@ -117,6 +162,16 @@
 			} );
 		}
 
+		if ( els.ordering ) {
+			// WC rendert den Sortier-Select mit onchange="this.form.submit()"
+			// (voller Reload) — entfernen und stattdessen an denselben
+			// AJAX-Pfad wie die übrigen Filter anhängen (§13/§15).
+			els.ordering.onchange = null;
+			els.ordering.addEventListener( 'change', function () {
+				submitFilter( true );
+			} );
+		}
+
 		document.addEventListener( 'click', function ( event ) {
 			var link = event.target.closest( '[data-bw-filter-page]' );
 			if ( ! link ) {
@@ -125,7 +180,7 @@
 			event.preventDefault();
 			var url = new URL( link.href );
 			var page = parseInt( url.searchParams.get( 'paged' ) || '1', 10 );
-			fetchProducts( serializeForm( els.form ), page, true );
+			fetchProducts( currentParams(), page, true );
 			if ( els.content ) {
 				els.content.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 			}
@@ -133,7 +188,9 @@
 
 		window.addEventListener( 'popstate', function ( event ) {
 			if ( event.state && event.state.bwFilter ) {
-				fetchProducts( new URLSearchParams( event.state.params ), event.state.page || 1, false );
+				var restoredParams = new URLSearchParams( event.state.params );
+				syncFormFromParams( restoredParams );
+				fetchProducts( restoredParams, event.state.page || 1, false );
 			}
 		} );
 	}
