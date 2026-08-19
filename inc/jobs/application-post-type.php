@@ -40,6 +40,7 @@ function bodywings_job_application_columns( array $columns ): array {
 		'job'         => __( 'Stelle', 'bodywings' ),
 		'status'      => __( 'Status', 'bodywings' ),
 		'cv'          => __( 'Lebenslauf', 'bodywings' ),
+		'scan'        => __( 'Virenscan', 'bodywings' ),
 		'date'        => $columns['date'],
 	);
 
@@ -78,7 +79,27 @@ function bodywings_render_job_application_column( string $column, int $post_id )
 				echo '—';
 			}
 			break;
+
+		case 'scan':
+			echo esc_html( bodywings_get_scan_status_label( get_post_meta( $post_id, '_bw_cv_scan_status', true ) ) );
+			break;
 	}
+}
+
+/**
+ * Menschenlesbares Ergebnis der optionalen MetaDefender-Prüfung (§32,
+ * siehe inc/jobs/malware-scan.php) — 'infected' taucht hier nie auf, eine
+ * als infiziert erkannte Datei wird bereits beim Upload abgelehnt und
+ * erzeugt gar keine Bewerbung.
+ */
+function bodywings_get_scan_status_label( string $status ): string {
+	$labels = array(
+		'clean'        => __( '✓ Sauber', 'bodywings' ),
+		'skipped'      => __( '– Nicht geprüft (kein API-Key hinterlegt)', 'bodywings' ),
+		'inconclusive' => __( '⚠ Unklar – bitte manuell prüfen', 'bodywings' ),
+	);
+
+	return $labels[ $status ] ?? $labels['skipped'];
 }
 
 function bodywings_get_job_application_status_label( string $status ): string {
@@ -125,7 +146,9 @@ function bodywings_render_job_application_meta_box( WP_Post $post ): void {
 		<p><strong><?php esc_html_e( 'Stelle:', 'bodywings' ); ?></strong> <a href="<?php echo esc_url( get_permalink( $job_id ) ); ?>"><?php echo esc_html( get_the_title( $job_id ) ); ?></a></p>
 	<?php endif; ?>
 	<?php if ( $download_url ) : ?>
-		<p><strong><?php esc_html_e( 'Lebenslauf:', 'bodywings' ); ?></strong> <a href="<?php echo esc_url( $download_url ); ?>"><?php echo esc_html( $cv_name ?: __( 'Herunterladen', 'bodywings' ) ); ?></a></p>
+		<p><strong><?php esc_html_e( 'Lebenslauf:', 'bodywings' ); ?></strong> <a href="<?php echo esc_url( $download_url ); ?>"><?php echo esc_html( $cv_name ?: __( 'Herunterladen', 'bodywings' ) ); ?></a>
+			(<?php echo esc_html( bodywings_get_scan_status_label( get_post_meta( $post->ID, '_bw_cv_scan_status', true ) ) ); ?>)
+		</p>
 	<?php endif; ?>
 	<p>
 		<label for="bw-application-status"><strong><?php esc_html_e( 'Status:', 'bodywings' ); ?></strong></label><br />

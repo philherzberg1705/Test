@@ -41,7 +41,7 @@ function bodywings_job_applications_base_dir(): string {
  * Validiert + speichert einen hochgeladenen Lebenslauf.
  *
  * @param array $file Ein Eintrag aus $_FILES.
- * @return array{relpath:string,filename:string}|WP_Error
+ * @return array{relpath:string,filename:string,scan_status:string}|WP_Error
  */
 function bodywings_store_job_application_cv( array $file ) {
 	if ( empty( $file['tmp_name'] ) || UPLOAD_ERR_OK !== ( $file['error'] ?? UPLOAD_ERR_NO_FILE ) ) {
@@ -69,6 +69,18 @@ function bodywings_store_job_application_cv( array $file ) {
 		return new WP_Error( 'bw_upload_invalid_signature', __( 'Die Datei scheint kein gültiges PDF zu sein.', 'bodywings' ) );
 	}
 
+	// Optionale Malware-Prüfung (§32, siehe inc/jobs/malware-scan.php) —
+	// ohne konfigurierten API-Key liefert diese Funktion 'skipped' und
+	// ändert am bisherigen Verhalten nichts. Nur ein eindeutig positiver
+	// Befund blockiert den Upload; ein unklares Ergebnis (API nicht
+	// erreichbar, Zeitlimit) soll Bewerber:innen nicht aussperren, wird
+	// aber am Ergebnis vermerkt, damit es im Backend sichtbar bleibt.
+	$scan_status = bodywings_scan_file_for_malware( $file['tmp_name'], $file['name'] );
+
+	if ( 'infected' === $scan_status ) {
+		return new WP_Error( 'bw_upload_malware_detected', __( 'Die Datei wurde von der Virenprüfung als potenziell schädlich eingestuft. Bitte eine andere Datei hochladen oder den Support kontaktieren.', 'bodywings' ) );
+	}
+
 	$base_dir = bodywings_job_applications_base_dir();
 	$token    = bin2hex( random_bytes( 16 ) );
 	$dest_dir = $base_dir . '/' . $token;
@@ -84,8 +96,9 @@ function bodywings_store_job_application_cv( array $file ) {
 	}
 
 	return array(
-		'relpath'  => $token . '/lebenslauf.pdf',
-		'filename' => sanitize_file_name( $file['name'] ),
+		'relpath'     => $token . '/lebenslauf.pdf',
+		'filename'    => sanitize_file_name( $file['name'] ),
+		'scan_status' => $scan_status,
 	);
 }
 

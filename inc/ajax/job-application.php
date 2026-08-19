@@ -86,6 +86,7 @@ function bodywings_ajax_submit_job_application(): void {
 	update_post_meta( $application_id, '_bw_applicant_phone', $phone );
 	update_post_meta( $application_id, '_bw_cv_relpath', $cv['relpath'] );
 	update_post_meta( $application_id, '_bw_cv_filename', $cv['filename'] );
+	update_post_meta( $application_id, '_bw_cv_scan_status', $cv['scan_status'] );
 	update_post_meta( $application_id, '_bw_status', 'new' );
 	update_post_meta( $application_id, '_bw_consent_at', current_time( 'mysql' ) );
 

@@ -15,8 +15,9 @@ const BODYWINGS_JOB_SETTINGS_OPTION = 'bodywings_job_settings';
 
 function bodywings_get_job_settings(): array {
 	return wp_parse_args( get_option( BODYWINGS_JOB_SETTINGS_OPTION, array() ), array(
-		'org_name'    => '',
-		'org_logo_id' => 0,
+		'org_name'             => '',
+		'org_logo_id'          => 0,
+		'metadefender_api_key' => '',
 	) );
 }
 
@@ -46,16 +47,18 @@ function bodywings_register_job_settings(): void {
 		'type'              => 'array',
 		'sanitize_callback' => 'bodywings_sanitize_job_settings',
 		'default'           => array(
-			'org_name'    => '',
-			'org_logo_id' => 0,
+			'org_name'             => '',
+			'org_logo_id'          => 0,
+			'metadefender_api_key' => '',
 		),
 	) );
 }
 
 function bodywings_sanitize_job_settings( $value ): array {
 	return array(
-		'org_name'    => isset( $value['org_name'] ) ? sanitize_text_field( $value['org_name'] ) : '',
-		'org_logo_id' => isset( $value['org_logo_id'] ) ? absint( $value['org_logo_id'] ) : 0,
+		'org_name'             => isset( $value['org_name'] ) ? sanitize_text_field( $value['org_name'] ) : '',
+		'org_logo_id'          => isset( $value['org_logo_id'] ) ? absint( $value['org_logo_id'] ) : 0,
+		'metadefender_api_key' => isset( $value['metadefender_api_key'] ) ? sanitize_text_field( $value['metadefender_api_key'] ) : '',
 	);
 }
 
@@ -136,6 +139,25 @@ function bodywings_render_job_settings_page(): void {
 							<button type="button" class="button bodywings-attribute-image-picker__remove" <?php echo $logo_url ? '' : 'style="display:none;"'; ?>><?php esc_html_e( 'Entfernen', 'bodywings' ); ?></button>
 						</div>
 						<p class="description"><?php esc_html_e( 'Leer lassen, um das Custom Logo bzw. Site-Icon zu verwenden.', 'bodywings' ); ?></p>
+					</td>
+				</tr>
+			</table>
+
+			<h2><?php esc_html_e( 'Virenprüfung für Lebenslauf-Uploads', 'bodywings' ); ?></h2>
+			<p><?php esc_html_e( 'Optional: Hochgeladene PDF-Lebensläufe zusätzlich zur Typ-/Signaturprüfung über die MetaDefender-Cloud-API auf Schadsoftware prüfen. Kostenlosen API-Key auf metadefender.com erstellen. Ohne Key bleibt nur die bisherige Typ-/Signaturprüfung aktiv.', 'bodywings' ); ?></p>
+
+			<table class="form-table" role="presentation">
+				<tr>
+					<th scope="row"><label for="bodywings-job-metadefender-key"><?php esc_html_e( 'MetaDefender-API-Key', 'bodywings' ); ?></label></th>
+					<td>
+						<input
+							type="text"
+							id="bodywings-job-metadefender-key"
+							name="<?php echo esc_attr( BODYWINGS_JOB_SETTINGS_OPTION ); ?>[metadefender_api_key]"
+							value="<?php echo esc_attr( $settings['metadefender_api_key'] ); ?>"
+							class="regular-text"
+							autocomplete="off"
+						/>
 					</td>
 				</tr>
 			</table>
