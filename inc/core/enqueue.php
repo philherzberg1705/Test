@@ -99,6 +99,32 @@ function bodywings_enqueue_assets(): void {
 		);
 	}
 
+	if ( bodywings_is_woocommerce_active() && is_product() ) {
+		wp_enqueue_style(
+			'bodywings-product-page',
+			BODYWINGS_URI . '/assets/css/components/product-page.css',
+			array( 'bodywings-base' ),
+			bodywings_asset_version( $css_dir . '/components/product-page.css' )
+		);
+
+		wp_enqueue_script(
+			'bodywings-variations',
+			BODYWINGS_URI . '/assets/js/variations.js',
+			array( 'jquery', 'bodywings-core' ),
+			bodywings_asset_version( $js_dir . '/variations.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+
+		wp_localize_script( 'bodywings-variations', 'bodywingsProductData', array(
+			'attributeImages' => function_exists( 'bodywings_get_visual_attribute_images_map' )
+				? bodywings_get_visual_attribute_images_map()
+				: array(),
+		) );
+	}
+
 	wp_enqueue_script(
 		'bodywings-core',
 		BODYWINGS_URI . '/assets/js/core.js',

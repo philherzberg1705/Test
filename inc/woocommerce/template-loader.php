@@ -29,3 +29,6 @@ add_filter( 'woocommerce_template_path', function (): string {
  * gezielt in den jeweiligen Templates (Product Page, Shop-Archiv), daher
  * hier keine globale Wiederherstellung.
  */
+
+// Kein klassischer Widget-Sidebar-Bereich im minimalistischen Layout (§1).
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );

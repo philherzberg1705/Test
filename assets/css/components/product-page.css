@@ -1,0 +1,391 @@
+/**
+ * Produktdetailseite (§12). WooCommerce liefert Galerie, Preis, Rating,
+ * Add-to-Cart, Tabs und Reviews strukturell/funktional (§31) — hier wird
+ * bewusst nur deren Struktur-CSS ersetzt, weil woocommerce_enqueue_styles
+ * global deaktiviert ist (siehe inc/core/enqueue.php).
+ */
+
+.bw-product-page {
+	padding-block: var(--bw-space-6) var(--bw-space-10);
+}
+
+.woocommerce-breadcrumb {
+	margin-bottom: var(--bw-space-6);
+	font-size: var(--bw-text-small);
+	color: var(--bw-color-muted);
+}
+
+.woocommerce-breadcrumb a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.bw-product-page__layout {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--bw-space-7);
+}
+
+@media (min-width: 960px) {
+	.bw-product-page__layout {
+		grid-template-columns: 1.1fr 1fr;
+		align-items: start;
+	}
+}
+
+/* ---------- Galerie (natives WC-Markup, nur Struktur/Optik) ---------- */
+.woocommerce-product-gallery__wrapper {
+	display: flex;
+	flex-direction: column-reverse;
+	gap: var(--bw-space-3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.woocommerce-product-gallery__image {
+	border-radius: var(--bw-radius-lg);
+	overflow: hidden;
+	background: var(--bw-color-surface);
+	aspect-ratio: 4 / 5;
+}
+
+.woocommerce-product-gallery__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	padding: var(--bw-space-5);
+	transition: opacity var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+.woocommerce-product-gallery__image img.bw-fade {
+	opacity: 0.4;
+}
+
+@media (min-width: 480px) {
+	.woocommerce-product-gallery__wrapper {
+		flex-direction: column;
+	}
+}
+
+.flex-control-thumbs {
+	display: flex;
+	gap: var(--bw-space-2);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow-x: auto;
+}
+
+.flex-control-thumbs li {
+	flex: 0 0 auto;
+}
+
+.flex-control-thumbs img {
+	width: 64px;
+	height: 64px;
+	object-fit: contain;
+	border-radius: var(--bw-radius-sm);
+	background: var(--bw-color-surface);
+	border: 1px solid var(--bw-color-border);
+	padding: var(--bw-space-1);
+	cursor: pointer;
+}
+
+.flex-control-thumbs img.flex-active {
+	border-color: var(--bw-color-green);
+}
+
+/* ---------- Summary ---------- */
+.bw-product-page__summary > * {
+	margin-top: var(--bw-space-4);
+}
+
+.bw-product-page__summary > *:first-child {
+	margin-top: 0;
+}
+
+.product_title {
+	font-size: var(--bw-text-h2);
+}
+
+.bw-product-page__category {
+	font-size: var(--bw-text-small);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--bw-color-muted);
+}
+
+.bw-product-page__category a {
+	color: inherit;
+}
+
+/* Sterne-Bewertung: WC rendert einen Prozent-Balken via ::before-Breite. */
+.star-rating {
+	position: relative;
+	width: 5.4em;
+	height: 1.1em;
+	font-size: var(--bw-text-small);
+	line-height: 1.1em;
+	color: var(--bw-color-border);
+}
+
+.star-rating::before {
+	content: '★★★★★';
+	position: absolute;
+	inset: 0;
+	letter-spacing: 0.2em;
+}
+
+.star-rating span {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	color: var(--bw-color-terrakotta);
+}
+
+.star-rating span::before {
+	content: '★★★★★';
+	letter-spacing: 0.2em;
+}
+
+.woocommerce-product-rating {
+	display: flex;
+	align-items: center;
+	gap: var(--bw-space-2);
+}
+
+.woocommerce-review-link {
+	font-size: var(--bw-text-small);
+	color: var(--bw-color-muted);
+}
+
+.woocommerce-product-details__short-description {
+	color: var(--bw-color-page-text);
+}
+
+.price {
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-h4);
+	color: var(--bw-color-heading-text);
+}
+
+.price del {
+	opacity: 0.5;
+	font-size: var(--bw-text-body);
+	margin-right: var(--bw-space-2);
+}
+
+.price ins {
+	text-decoration: none;
+	color: var(--bw-color-terrakotta);
+}
+
+/* ---------- Varianten ---------- */
+table.variations {
+	width: 100%;
+	border: 0;
+	margin: 0;
+}
+
+table.variations tr {
+	display: block;
+}
+
+table.variations td {
+	display: block;
+	padding: 0;
+}
+
+table.variations .label label {
+	display: block;
+	margin-bottom: var(--bw-space-2);
+}
+
+.bw-swatch-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bw-space-2);
+	margin-bottom: var(--bw-space-4);
+}
+
+/* Fallback: Attribute ohne Bild (z.B. Größe) bleiben ein gestyltes Select. */
+select:not(.bw-visually-hidden) {
+	width: 100%;
+	max-width: 320px;
+	padding: var(--bw-space-3) var(--bw-space-4);
+	border: 1px solid var(--bw-color-border);
+	border-radius: var(--bw-radius-sm);
+	background: var(--bw-color-surface);
+	margin-bottom: var(--bw-space-4);
+}
+
+.reset_variations {
+	display: inline-block;
+	margin-top: var(--bw-space-1);
+	font-size: var(--bw-text-small);
+	text-decoration: underline;
+	color: var(--bw-color-muted);
+}
+
+.single_variation_wrap {
+	margin-top: var(--bw-space-4);
+}
+
+.woocommerce-variation-price .price {
+	font-size: var(--bw-text-h5);
+}
+
+.woocommerce-variation-availability .stock {
+	font-size: var(--bw-text-small);
+}
+
+.stock.out-of-stock {
+	color: var(--bw-color-terrakotta);
+}
+
+/* ---------- Mengenwahl + Add-to-Cart ---------- */
+.quantity {
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid var(--bw-color-border);
+	border-radius: var(--bw-radius-sm);
+	overflow: hidden;
+}
+
+.quantity .qty {
+	width: 56px;
+	padding: var(--bw-space-3) var(--bw-space-2);
+	border: 0;
+	text-align: center;
+	-moz-appearance: textfield;
+}
+
+.cart {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--bw-space-3);
+}
+
+.single_add_to_cart_button {
+	flex: 1 1 200px;
+}
+
+.single_add_to_cart_button.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* ---------- Wishlist-Button ---------- */
+.bw-wishlist-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--bw-space-2);
+	padding: var(--bw-space-2) 0;
+	font-size: var(--bw-text-small);
+	color: var(--bw-color-page-text);
+}
+
+.bw-wishlist-btn .bw-icon {
+	width: 18px;
+	height: 18px;
+}
+
+.bw-wishlist-btn[aria-pressed='true'] .bw-icon {
+	color: var(--bw-color-terrakotta);
+}
+
+.bw-product-page__shipping-info {
+	display: flex;
+	align-items: center;
+	gap: var(--bw-space-2);
+	font-size: var(--bw-text-small);
+	color: var(--bw-color-muted);
+}
+
+.bw-product-page__shipping-info .bw-icon {
+	width: 16px;
+	height: 16px;
+}
+
+/* ---------- Tabs (Beschreibung/Zusatzinfo/Bewertungen) ---------- */
+.woocommerce-tabs {
+	margin-top: var(--bw-space-9);
+}
+
+.woocommerce-tabs ul.tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bw-space-6);
+	list-style: none;
+	margin: 0 0 var(--bw-space-6);
+	padding: 0;
+	border-bottom: 1px solid var(--bw-color-border);
+}
+
+.woocommerce-tabs ul.tabs li a {
+	display: inline-block;
+	padding-bottom: var(--bw-space-3);
+	font-family: var(--bw-font-heading);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	color: var(--bw-color-muted);
+}
+
+.woocommerce-tabs ul.tabs li.active a {
+	color: var(--bw-color-heading-text);
+	border-bottom: 2px solid var(--bw-color-green);
+}
+
+.woocommerce-tabs .panel > h2 {
+	font-size: var(--bw-text-h4);
+	margin-bottom: var(--bw-space-4);
+}
+
+.woocommerce-Tabs-panel--additional_information table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.woocommerce-Tabs-panel--additional_information th,
+.woocommerce-Tabs-panel--additional_information td {
+	padding: var(--bw-space-2) 0;
+	border-bottom: 1px solid var(--bw-color-border);
+	text-align: left;
+}
+
+/* ---------- Reviews ---------- */
+#reviews .commentlist {
+	list-style: none;
+	margin: 0 0 var(--bw-space-6);
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-5);
+}
+
+#reviews .comment_container {
+	display: flex;
+	gap: var(--bw-space-3);
+}
+
+#reviews .avatar {
+	border-radius: var(--bw-radius-full);
+	width: 40px;
+	height: 40px;
+}
+
+#reviews .comment-form-rating select {
+	width: auto;
+}
+
+#reviews .form-submit input[type='submit'] {
+	margin-top: var(--bw-space-2);
+}
+
+@media (max-width: 599px) {
+	.bw-product-page__layout {
+		gap: var(--bw-space-5);
+	}
+}
