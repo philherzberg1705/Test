@@ -15,7 +15,15 @@ $bw_account_url = wc_get_page_permalink( 'myaccount' );
 ?>
 
 <div class="bw-auth" data-bw-auth>
-	<div class="bw-auth__tabs" role="tablist">
+	<?php
+	/*
+	 * Kein role="tablist": Diese Leiste verlinkt auf eigenständige Seiten
+	 * (Konto/Registrierung), es ist kein JS-Tab-Widget wie in form-login.php
+	 * — role="tablist" ohne role="tab"-Kinder wäre unnötiges/falsches ARIA
+	 * (§25 "kein unnötiges ARIA"; semantisches <nav> statt Tab-Rolle).
+	 */
+	?>
+	<nav class="bw-auth__tabs" aria-label="<?php esc_attr_e( 'Konto-Bereich', 'bodywings' ); ?>">
 		<a class="bw-auth__tab bw-auth__tab--link" href="<?php echo esc_url( $bw_account_url ); ?>">
 			<?php esc_html_e( 'Anmelden', 'bodywings' ); ?>
 		</a>
@@ -27,7 +35,7 @@ $bw_account_url = wc_get_page_permalink( 'myaccount' );
 		<span class="bw-auth__tab is-active" aria-current="page">
 			<?php esc_html_e( 'Passwort vergessen', 'bodywings' ); ?>
 		</span>
-	</div>
+	</nav>
 
 	<?php do_action( 'woocommerce_before_lost_password_form' ); ?>
 

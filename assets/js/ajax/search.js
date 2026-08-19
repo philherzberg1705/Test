@@ -9,37 +9,67 @@
 	var DEBOUNCE_MS = 300;
 	var MIN_CHARS = 2;
 
+	/**
+	 * DOM statt innerHTML-String-Konkatenation: Produktname/-preis kommen
+	 * aus Nutzereingaben-abhängigen Daten (Produkttitel können HTML
+	 * enthalten) — textContent verhindert XSS über die Live-Suche (§32).
+	 */
 	function renderResults( container, results, term, moreUrl ) {
+		container.textContent = '';
+
 		if ( ! results.length ) {
-			container.innerHTML = term.length >= MIN_CHARS
-				? '<p class="bw-search-results__empty">' + ( container.dataset.bwEmptyText || 'Keine Ergebnisse gefunden.' ) + '</p>'
-				: '';
+			if ( term.length >= MIN_CHARS ) {
+				var empty = document.createElement( 'p' );
+				empty.className = 'bw-search-results__empty';
+				empty.textContent = container.dataset.bwEmptyText || 'Keine Ergebnisse gefunden.';
+				container.appendChild( empty );
+			}
 			container.classList.remove( 'is-visible' );
 			return;
 		}
 
-		var html = '<ul class="bw-search-results__list">';
+		var list = document.createElement( 'ul' );
+		list.className = 'bw-search-results__list';
 
 		results.forEach( function ( item ) {
-			html += '' +
-				'<li class="bw-search-results__item">' +
-					'<a href="' + item.permalink + '">' +
-						'<img src="' + item.image + '" alt="" loading="lazy" />' +
-						'<span class="bw-search-results__meta">' +
-							'<span class="bw-search-results__name">' + item.name + '</span>' +
-							'<span class="bw-search-results__price">' + item.priceHtml + '</span>' +
-						'</span>' +
-					'</a>' +
-				'</li>';
+			var li = document.createElement( 'li' );
+			li.className = 'bw-search-results__item';
+
+			var link = document.createElement( 'a' );
+			link.href = item.permalink;
+
+			var img = document.createElement( 'img' );
+			img.src = item.image;
+			img.alt = '';
+			img.loading = 'lazy';
+
+			var meta = document.createElement( 'span' );
+			meta.className = 'bw-search-results__meta';
+
+			var name = document.createElement( 'span' );
+			name.className = 'bw-search-results__name';
+			name.textContent = item.name;
+
+			var price = document.createElement( 'span' );
+			price.className = 'bw-search-results__price';
+			price.textContent = item.priceHtml;
+
+			meta.append( name, price );
+			link.append( img, meta );
+			li.appendChild( link );
+			list.appendChild( li );
 		} );
 
-		html += '</ul>';
+		container.appendChild( list );
 
 		if ( moreUrl ) {
-			html += '<a class="bw-search-results__more" href="' + moreUrl + '">Alle Ergebnisse ansehen</a>';
+			var more = document.createElement( 'a' );
+			more.className = 'bw-search-results__more';
+			more.href = moreUrl;
+			more.textContent = 'Alle Ergebnisse ansehen';
+			container.appendChild( more );
 		}
 
-		container.innerHTML = html;
 		requestAnimationFrame( function () {
 			container.classList.add( 'is-visible' );
 		} );

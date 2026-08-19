@@ -22,11 +22,11 @@ $bw_show_register = 'yes' === get_option( 'woocommerce_enable_myaccount_registra
 
 <div class="bw-auth" data-bw-auth>
 	<div class="bw-auth__tabs" role="tablist">
-		<button type="button" class="bw-auth__tab is-active" data-bw-auth-tab="login" role="tab" aria-selected="true" aria-controls="bw-auth-panel-login">
+		<button type="button" class="bw-auth__tab is-active" data-bw-auth-tab="login" role="tab" aria-selected="true" aria-controls="bw-auth-panel-login" tabindex="0">
 			<?php esc_html_e( 'Anmelden', 'bodywings' ); ?>
 		</button>
 		<?php if ( $bw_show_register ) : ?>
-			<button type="button" class="bw-auth__tab" data-bw-auth-tab="register" role="tab" aria-selected="false" aria-controls="bw-auth-panel-register">
+			<button type="button" class="bw-auth__tab" data-bw-auth-tab="register" role="tab" aria-selected="false" aria-controls="bw-auth-panel-register" tabindex="-1">
 				<?php esc_html_e( 'Registrieren', 'bodywings' ); ?>
 			</button>
 		<?php endif; ?>

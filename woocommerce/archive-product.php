@@ -35,7 +35,7 @@ remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
 			<?php if ( woocommerce_product_loop() ) : ?>
 
 				<div class="bw-shop__toolbar">
-					<p class="bw-shop__result-count bw-text-small bw-color-muted" data-bw-shop-result-count>
+					<p class="bw-shop__result-count bw-text-small bw-color-muted" data-bw-shop-result-count aria-live="polite">
 						<?php woocommerce_result_count(); ?>
 					</p>
 					<div class="bw-shop__ordering">
