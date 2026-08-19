@@ -1,0 +1,120 @@
+/**
+ * Side-Cart / Mini-Cart (§16). Panel-Grundverhalten kommt aus
+ * offcanvas.css, hier nur der Inhalt.
+ */
+
+.bw-mini-cart__title {
+	font-size: var(--bw-text-h4);
+	margin: 0 0 var(--bw-space-6);
+	margin-top: var(--bw-space-9);
+}
+
+[data-bw-cart-content] {
+	transition: opacity var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+[data-bw-cart-content].is-loading {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+.bw-mini-cart__empty {
+	color: var(--bw-color-muted);
+}
+
+.bw-mini-cart__items {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-5);
+	list-style: none;
+	margin: 0 0 var(--bw-space-6);
+	padding: 0;
+}
+
+.bw-mini-cart__item {
+	display: flex;
+	gap: var(--bw-space-3);
+}
+
+.bw-mini-cart__image {
+	flex-shrink: 0;
+	width: 72px;
+	height: 72px;
+	border-radius: var(--bw-radius-sm);
+	overflow: hidden;
+	background: var(--bw-color-page-bg);
+}
+
+.bw-mini-cart__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.bw-mini-cart__details {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-1);
+	flex: 1;
+}
+
+.bw-mini-cart__name {
+	font-size: var(--bw-text-small);
+	color: var(--bw-color-heading-text);
+}
+
+.bw-mini-cart__variation {
+	font-size: var(--bw-text-label);
+	color: var(--bw-color-muted);
+}
+
+.bw-mini-cart__price {
+	font-size: var(--bw-text-small);
+	font-weight: var(--bw-weight-semibold);
+}
+
+.bw-mini-cart__row {
+	display: flex;
+	align-items: center;
+	gap: var(--bw-space-3);
+	margin-top: var(--bw-space-1);
+}
+
+.bw-mini-cart__qty {
+	width: 56px;
+	padding: var(--bw-space-1) var(--bw-space-2);
+	border: 1px solid var(--bw-color-border);
+	border-radius: var(--bw-radius-sm);
+}
+
+.bw-mini-cart__remove {
+	font-size: var(--bw-text-label);
+	text-decoration: underline;
+	color: var(--bw-color-muted);
+}
+
+.bw-mini-cart__subtotal {
+	display: flex;
+	justify-content: space-between;
+	padding-top: var(--bw-space-4);
+	border-top: 1px solid var(--bw-color-border);
+	font-family: var(--bw-font-heading);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.bw-mini-cart__actions {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-2);
+	margin-top: var(--bw-space-5);
+}
+
+.bw-mini-cart__actions .bw-btn {
+	width: 100%;
+}
+
+.single_add_to_cart_button.is-loading {
+	opacity: 0.7;
+	cursor: progress;
+}

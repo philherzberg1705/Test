@@ -67,6 +67,15 @@ function bodywings_enqueue_assets(): void {
 		bodywings_asset_version( $css_dir . '/components/footer.css' )
 	);
 
+	if ( bodywings_is_woocommerce_active() ) {
+		wp_enqueue_style(
+			'bodywings-cart',
+			BODYWINGS_URI . '/assets/css/components/cart.css',
+			array( 'bodywings-offcanvas' ),
+			bodywings_asset_version( $css_dir . '/components/cart.css' )
+		);
+	}
+
 	$js_dir = BODYWINGS_DIR . '/assets/js';
 
 	// Nur auf Seiten mit Produktkarten laden (§26 — keine unnötigen Assets).
@@ -177,6 +186,19 @@ function bodywings_enqueue_assets(): void {
 			'in_footer' => true,
 		)
 	);
+
+	if ( bodywings_is_woocommerce_active() ) {
+		wp_enqueue_script(
+			'bodywings-cart',
+			BODYWINGS_URI . '/assets/js/ajax/cart.js',
+			array( 'bodywings-offcanvas' ),
+			bodywings_asset_version( $js_dir . '/ajax/cart.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
 
 	wp_enqueue_script(
 		'bodywings-newsletter',

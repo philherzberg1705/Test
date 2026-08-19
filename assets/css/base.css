@@ -205,6 +205,16 @@ label,
 	transform: scale(0.98);
 }
 
+.bw-btn--outline {
+	background: transparent;
+	color: var(--bw-color-green);
+	border: 1px solid var(--bw-color-green);
+}
+
+.bw-btn--outline:hover {
+	background: color-mix(in oklab, var(--bw-color-green) 8%, transparent);
+}
+
 /* ---------- Inputs (Grundform) ---------- */
 .bw-input {
 	width: 100%;

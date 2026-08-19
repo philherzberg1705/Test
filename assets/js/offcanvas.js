@@ -158,5 +158,14 @@
 
 	if ( window.bodywings && window.bodywings.register ) {
 		window.bodywings.register( 'offcanvas', initOffcanvas );
+
+		// Öffentliche API, damit andere Module (z.B. Side-Cart nach
+		// Add-to-Cart) ein Panel programmatisch öffnen können.
+		window.bodywings.openOffcanvas = function ( name ) {
+			var panel = document.querySelector( '[data-bw-offcanvas="' + name + '"]' );
+			if ( panel && ! isResponsiveStatic( panel ) ) {
+				openOffcanvas( panel );
+			}
+		};
 	}
 } )();

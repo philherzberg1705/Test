@@ -84,6 +84,9 @@ $bw_cart_count     = bodywings_get_cart_count();
 				class="bw-icon-btn bw-site-header__action bw-site-header__action--cart"
 				href="<?php echo esc_url( bodywings_get_cart_url() ); ?>"
 				data-bw-cart-trigger
+				data-bw-offcanvas-trigger="cart"
+				aria-expanded="false"
+				aria-controls="bw-offcanvas-cart"
 			>
 				<?php echo bodywings_icon( 'bag' ); // phpcs:ignore ?>
 				<span class="bw-visually-hidden"><?php esc_html_e( 'Warenkorb', 'bodywings' ); ?></span>
@@ -99,3 +102,4 @@ $bw_cart_count     = bodywings_get_cart_count();
 get_template_part( 'template-parts/header/offcanvas-menu' );
 get_template_part( 'template-parts/header/offcanvas-search' );
 get_template_part( 'template-parts/header/offcanvas-locale' );
+get_template_part( 'template-parts/woocommerce/cart-offcanvas' );
