@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/news-slider",
+	"title": "News-Slider",
+	"category": "bodywings",
+	"icon": "slides",
+	"description": "Horizontaler Slider mit Beiträgen (neueste, aus einer Kategorie oder manuell ausgewählt) — endet mit einer Karte zum News-Archiv.",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "Neuigkeiten" },
+		"source": { "type": "string", "default": "recent" },
+		"categoryId": { "type": "number", "default": 0 },
+		"postIds": { "type": "array", "default": [] },
+		"count": { "type": "number", "default": 6 },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-news-slider-edit",
+	"viewScript": "bodywings-block-slider",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

@@ -629,3 +629,113 @@
 	font-size: var(--bw-text-label);
 	margin: 0;
 }
+
+/* ---------- News-Slider ----------
+   Item-Breite ist bewusst NICHT fluid/vw-basiert wie bei den anderen
+   Slidern: §-Vorgabe verlangt ab Desktop immer mindestens 3 sichtbare
+   Karten gleichzeitig, das lässt sich nur über eine an die Spaltenzahl
+   gekoppelte Breite garantieren. */
+.bw-news-slider__heading {
+	font-size: var(--bw-text-h2);
+	margin-bottom: var(--bw-space-5);
+}
+
+.bw-news-slider__item {
+	width: 82vw;
+}
+
+@media (min-width: 600px) {
+	.bw-news-slider__item {
+		width: calc((100% - var(--bw-space-5)) / 2);
+	}
+}
+
+@media (min-width: 960px) {
+	.bw-news-slider__item {
+		width: calc((100% - 2 * var(--bw-space-5)) / 3);
+	}
+}
+
+.bw-news-slider__link {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	color: inherit;
+	background: var(--bw-color-surface);
+	border-radius: var(--bw-radius-lg);
+	overflow: hidden;
+	transition: transform var(--bw-duration-fast) var(--bw-ease-standard),
+		box-shadow var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+.bw-news-slider__link:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--bw-shadow-md);
+}
+
+.bw-news-slider__media {
+	display: block;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+}
+
+.bw-news-slider__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.bw-news-slider__meta {
+	display: flex;
+	align-items: center;
+	gap: var(--bw-space-2);
+	margin: var(--bw-space-4) var(--bw-space-4) 0;
+}
+
+.bw-news-slider__date {
+	font-size: var(--bw-text-label);
+	color: var(--bw-color-muted);
+}
+
+.bw-news-slider__title {
+	display: block;
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-h6);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	margin: var(--bw-space-3) var(--bw-space-4) 0;
+}
+
+.bw-news-slider__excerpt {
+	display: block;
+	color: var(--bw-color-muted);
+	font-size: var(--bw-text-small);
+	margin: var(--bw-space-2) var(--bw-space-4) var(--bw-space-4);
+}
+
+/* Letzte Karte: Link zum Archiv statt eines Beitrags. */
+.bw-news-slider__item--all .bw-news-slider__link--all {
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: var(--bw-space-3);
+	padding: var(--bw-space-6);
+	background: transparent;
+	border: 1px dashed var(--bw-color-border);
+	min-height: 100%;
+}
+
+.bw-news-slider__link--all:hover {
+	background: color-mix(in oklab, var(--bw-color-green) 6%, transparent);
+	box-shadow: none;
+}
+
+.bw-news-slider__link--all .bw-icon {
+	width: 28px;
+	height: 28px;
+	color: var(--bw-color-terrakotta);
+}
+
+.bw-news-slider__link--all .bw-news-slider__title {
+	margin: 0;
+}
