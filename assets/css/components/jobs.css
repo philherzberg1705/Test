@@ -1,0 +1,302 @@
+/**
+ * Stellenausschreibungen: Archiv-Grid, Job-Karte, Detailseite,
+ * Bewerbungsformular. Reine Layout-/Anzeige-Regeln, Farben/Radien/
+ * Abstände ausschließlich aus tokens.css (§2).
+ */
+
+.bw-jobs-archive .bw-shop__header {
+	margin-bottom: var(--bw-space-5);
+}
+
+.bw-jobs-filter {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bw-space-3);
+	margin-bottom: var(--bw-space-6);
+}
+
+.bw-jobs-filter select {
+	min-width: 200px;
+}
+
+.bw-job-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--bw-space-5);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@media (min-width: 600px) {
+	.bw-job-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 1280px) {
+	.bw-job-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.bw-job-card {
+	background: var(--bw-color-surface);
+	border-radius: var(--bw-radius-lg);
+	overflow: hidden;
+	transition: transform var(--bw-duration-fast) var(--bw-ease-standard),
+		box-shadow var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+.bw-job-card:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--bw-shadow-md);
+}
+
+.bw-job-card__link {
+	display: block;
+	color: inherit;
+	height: 100%;
+}
+
+.bw-job-card__media {
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+}
+
+.bw-job-card__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.bw-job-card__body {
+	padding: var(--bw-space-5);
+}
+
+.bw-job-card__badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bw-space-2);
+	margin-bottom: var(--bw-space-3);
+}
+
+.bw-badge-pill {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--bw-space-1) var(--bw-space-3);
+	border-radius: var(--bw-radius-full);
+	background: var(--bw-color-green);
+	color: var(--bw-on-green);
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-label);
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.bw-badge-pill--outline {
+	background: transparent;
+	color: var(--bw-color-green);
+	border: 1px solid var(--bw-color-border);
+}
+
+.bw-job-card__title {
+	font-size: var(--bw-text-h5);
+	margin-bottom: var(--bw-space-2);
+}
+
+.bw-job-card__salary {
+	color: var(--bw-color-muted);
+	font-size: var(--bw-text-small);
+	margin-bottom: var(--bw-space-3);
+}
+
+.bw-job-card__cta {
+	display: inline-block;
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-small);
+	text-decoration: underline;
+	color: var(--bw-color-green);
+}
+
+/* ---------- Detailseite ---------- */
+.bw-job-single {
+	padding-block: var(--bw-space-6) var(--bw-space-10);
+}
+
+.bw-job-single__header {
+	max-width: 760px;
+	margin-bottom: var(--bw-space-6);
+}
+
+.bw-job-single__title {
+	margin-block: var(--bw-space-3) var(--bw-space-4);
+}
+
+.bw-job-single__meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bw-space-6);
+	margin: 0 0 var(--bw-space-5);
+}
+
+.bw-job-single__meta dt {
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-label);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	color: var(--bw-color-muted);
+}
+
+.bw-job-single__meta dd {
+	margin: 0;
+	font-size: var(--bw-text-body);
+	font-weight: var(--bw-weight-semibold);
+}
+
+.bw-job-single__media {
+	border-radius: var(--bw-radius-lg);
+	overflow: hidden;
+	margin-bottom: var(--bw-space-6);
+}
+
+.bw-job-single__media img {
+	width: 100%;
+	height: auto;
+}
+
+.bw-job-single__layout {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--bw-space-8);
+}
+
+@media (min-width: 960px) {
+	.bw-job-single__layout {
+		grid-template-columns: 1fr 380px;
+		align-items: start;
+	}
+}
+
+.bw-job-single__list-section {
+	margin-top: var(--bw-space-6);
+}
+
+.bw-job-single__list-section h2 {
+	font-size: var(--bw-text-h4);
+	margin-bottom: var(--bw-space-3);
+}
+
+.bw-job-single__list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-2);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.bw-job-single__list li {
+	position: relative;
+	padding-left: var(--bw-space-5);
+}
+
+.bw-job-single__list li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.65em;
+	width: 6px;
+	height: 6px;
+	border-radius: var(--bw-radius-full);
+	background: var(--bw-color-terrakotta);
+}
+
+.bw-job-single__sidebar {
+	position: sticky;
+	top: calc(var(--bw-space-9) + 60px);
+}
+
+.bw-job-single__closed {
+	padding: var(--bw-space-6);
+	background: var(--bw-color-surface);
+	border-radius: var(--bw-radius-lg);
+	text-align: center;
+}
+
+.bw-job-single__closed p {
+	margin-bottom: var(--bw-space-4);
+}
+
+/* ---------- Bewerbungsformular ---------- */
+.bw-job-application {
+	padding: var(--bw-space-6);
+	background: var(--bw-color-surface);
+	border-radius: var(--bw-radius-lg);
+}
+
+.bw-job-application__title {
+	font-size: var(--bw-text-h4);
+	margin-bottom: var(--bw-space-5);
+}
+
+.bw-job-application-form__row {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--bw-space-4);
+}
+
+@media (min-width: 480px) {
+	.bw-job-application-form__row {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.bw-job-application-form__field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-1);
+	margin-bottom: var(--bw-space-4);
+}
+
+.bw-job-application-form__field label,
+.bw-job-application-form > label {
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-label);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.bw-job-application-form__consent {
+	display: flex;
+	gap: var(--bw-space-2);
+	align-items: flex-start;
+	font-size: var(--bw-text-small);
+	margin-bottom: var(--bw-space-5);
+}
+
+.bw-job-application-form__consent input {
+	margin-top: 3px;
+}
+
+.bw-job-application-form__submit {
+	width: 100%;
+}
+
+.bw-job-application-form__submit.is-loading {
+	opacity: 0.7;
+	cursor: progress;
+}
+
+.bw-job-application-form__status {
+	margin: var(--bw-space-3) 0 0;
+	font-size: var(--bw-text-small);
+}
+
+.bw-job-application-form__status.is-error {
+	color: var(--bw-color-danger);
+}
+
+.bw-job-application-form__status.is-success {
+	color: var(--bw-color-success);
+}

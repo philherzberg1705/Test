@@ -201,6 +201,28 @@ function bodywings_enqueue_assets(): void {
 		) );
 	}
 
+	if ( is_singular( 'bw_job' ) || is_post_type_archive( 'bw_job' ) ) {
+		wp_enqueue_style(
+			'bodywings-jobs',
+			BODYWINGS_URI . '/assets/css/components/jobs.css',
+			array( 'bodywings-base' ),
+			bodywings_asset_version( $css_dir . '/components/jobs.css' )
+		);
+	}
+
+	if ( is_singular( 'bw_job' ) ) {
+		wp_enqueue_script(
+			'bodywings-job-application',
+			BODYWINGS_URI . '/assets/js/ajax/job-application.js',
+			array( 'bodywings-core' ),
+			bodywings_asset_version( $js_dir . '/ajax/job-application.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
+
 	wp_enqueue_script(
 		'bodywings-core',
 		BODYWINGS_URI . '/assets/js/core.js',

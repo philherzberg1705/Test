@@ -282,6 +282,31 @@ label,
 	color: var(--bw-on-beige);
 }
 
+/* .bw-btn ist standardmäßig grün/beige (§2.1) — innerhalb eines bereits
+ * eingefärbten Content-Elements würde ein grüner Button sonst mit dem
+ * Hintergrund verschmelzen. Bewusst auf .bw-block beschränkt (Gutenberg-
+ * Content-Elemente, siehe inc/components/blocks.php) statt global auf jedes
+ * [data-bw-bg]: Header/Footer haben für ihre Buttons bereits eigene, fest
+ * abgestimmte Farben (z.B. .bw-newsletter-form__submit) und sollen durch
+ * diese generische Regel nicht überschrieben werden. Gefüllte Buttons in
+ * einem Block wechseln auf die Oberflächenfarbe (§2.2-Kontrastprinzip
+ * konsequent weitergedacht), Outline-Buttons übernehmen currentColor. */
+.bw-block[data-bw-bg] .bw-btn:not(.bw-btn--outline) {
+	background: var(--bw-color-surface);
+	color: var(--bw-color-green);
+}
+.bw-block[data-bw-bg] .bw-btn:not(.bw-btn--outline):hover {
+	background: color-mix(in oklab, var(--bw-color-surface) 85%, black);
+}
+.bw-block[data-bw-bg] .bw-btn--outline {
+	background: transparent;
+	color: inherit;
+	border-color: currentColor;
+}
+.bw-block[data-bw-bg] .bw-btn--outline:hover {
+	background: color-mix(in oklab, currentColor 12%, transparent);
+}
+
 /* Innerhalb eines eingefärbten Content-Elements sollen Überschriften die
  * automatische Textfarbe erben statt der globalen Heading-Farbe. */
 [data-bw-bg] h1,
@@ -330,6 +355,19 @@ label,
 	font-size: var(--bw-text-small);
 	color: var(--bw-color-muted);
 	font-weight: var(--bw-weight-regular);
+}
+
+/* Generische Breadcrumb (z.B. Jobs, §27) — WooCommerce-Produktseiten nutzen
+   weiterhin .woocommerce-breadcrumb (eigenes WC-Markup, siehe product-page.css). */
+.bw-breadcrumb {
+	margin-bottom: var(--bw-space-6);
+	font-size: var(--bw-text-small);
+	color: var(--bw-color-muted);
+}
+
+.bw-breadcrumb a {
+	color: inherit;
+	text-decoration: underline;
 }
 
 /* Alle abgerundeten UI-Elemente, die nicht über die volle Breite gehen (§4) */

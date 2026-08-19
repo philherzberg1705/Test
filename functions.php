@@ -72,6 +72,11 @@ $bodywings_modules = array(
 	'inc/woocommerce',
 	'inc/components',
 	'inc/ajax',
+	// Eigener Bereich statt inc/components: Stellenausschreibungen sind ein
+	// in sich abgeschlossenes Feature (Post-Type, Taxonomien, Meta-Boxen,
+	// Structured Data, Bewerbungs-Handling) von vergleichbarem Umfang wie
+	// inc/woocommerce, nicht bloß eine wiederverwendbare UI-Komponente.
+	'inc/jobs',
 );
 
 foreach ( $bodywings_modules as $bodywings_module ) {
