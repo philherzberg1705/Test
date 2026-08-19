@@ -9,6 +9,15 @@
  * in enqueue.php entfernen — Family-Namen in tokens.css bleiben dabei gleich,
  * es ändert sich nur die Quelle. */
 
+/* Sanfte native Seitenübergänge (§21 "Page Transitions"), wo der Browser
+ * die View-Transitions-API unterstützt — sonst folgenlos ignoriert.
+ * Kein JS nötig, respektiert reduced-motion automatisch über die Guard. */
+@media not (prefers-reduced-motion: reduce) {
+	@view-transition {
+		navigation: auto;
+	}
+}
+
 /* ---------- Minimal-Reset ---------- */
 *,
 *::before,

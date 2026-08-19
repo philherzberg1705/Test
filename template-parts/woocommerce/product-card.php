@@ -19,7 +19,7 @@ if ( ! $card['primary_image_src'] ) {
 	$card['primary_image_src'] = wc_placeholder_img_src( 'bodywings-product-card' );
 }
 ?>
-<article class="bw-product-card" data-bw-product-card>
+<article class="bw-product-card" data-bw-product-card data-bw-reveal>
 	<div class="bw-product-card__media">
 		<a class="bw-product-card__media-link" href="<?php echo esc_url( get_permalink( $product->get_id() ) ); ?>">
 			<img

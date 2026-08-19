@@ -97,6 +97,33 @@ function bodywings_enqueue_assets(): void {
 				'in_footer' => true,
 			)
 		);
+
+		// GSAP nur für komplexe Scroll-Reveals (§23) — hier selbst gehostet,
+		// nicht per CDN, und ausschließlich dort geladen, wo [data-bw-reveal]
+		// tatsächlich vorkommt.
+		wp_enqueue_script(
+			'bodywings-gsap',
+			BODYWINGS_URI . '/assets/js/vendor/gsap/gsap.min.js',
+			array(),
+			'3.15.0',
+			array( 'strategy' => 'defer', 'in_footer' => true )
+		);
+
+		wp_enqueue_script(
+			'bodywings-gsap-scrolltrigger',
+			BODYWINGS_URI . '/assets/js/vendor/gsap/ScrollTrigger.min.js',
+			array( 'bodywings-gsap' ),
+			'3.15.0',
+			array( 'strategy' => 'defer', 'in_footer' => true )
+		);
+
+		wp_enqueue_script(
+			'bodywings-motion',
+			BODYWINGS_URI . '/assets/js/motion.js',
+			array( 'bodywings-core', 'bodywings-gsap-scrolltrigger' ),
+			bodywings_asset_version( $js_dir . '/motion.js' ),
+			array( 'strategy' => 'defer', 'in_footer' => true )
+		);
 	}
 
 	if ( bodywings_is_woocommerce_active() && ( is_shop() || is_product_taxonomy() || is_search() || is_page_template( 'template-wishlist.php' ) ) ) {
