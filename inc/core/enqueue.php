@@ -15,6 +15,20 @@ add_action( 'wp_enqueue_scripts', 'bodywings_enqueue_assets' );
 function bodywings_enqueue_assets(): void {
 	$css_dir = BODYWINGS_DIR . '/assets/css';
 
+	// Google Fonts — bewusst vorläufig, siehe TODO in base.css. Family-Namen
+	// sind identisch zu tokens.css, damit der spätere Wechsel auf selbst
+	// gehostete Dateien ohne CSS-Änderung auskommt.
+	wp_enqueue_style(
+		'bodywings-google-fonts',
+		'https://fonts.googleapis.com/css2?' . implode( '&', array(
+			'family=Special+Gothic+Condensed+One',
+			'family=Open+Sans:wght@400;600;700',
+			'display=swap',
+		) ),
+		array(),
+		null
+	);
+
 	// tokens.css definiert ausschließlich Custom Properties, base.css die
 	// Basiselemente. Beide sind auf jeder Seite nötig (Design-System-Pflicht §2).
 	wp_enqueue_style(
@@ -50,6 +64,26 @@ function bodywings_enqueue_assets(): void {
 		'isUserLoggedIn' => is_user_logged_in(),
 		'reducedMotion'  => false, // wird clientseitig per matchMedia überschrieben.
 	) );
+}
+
+add_filter( 'wp_resource_hints', 'bodywings_google_fonts_preconnect', 10, 2 );
+
+/**
+ * Preconnect für Google Fonts, solange die Schriften nicht selbst gehostet
+ * werden (siehe TODO in base.css) — verkürzt die Ladezeit spürbar.
+ */
+function bodywings_google_fonts_preconnect( array $urls, string $relation_type ): array {
+	if ( 'preconnect' === $relation_type ) {
+		$urls[] = array(
+			'href' => 'https://fonts.googleapis.com',
+		);
+		$urls[] = array(
+			'href'        => 'https://fonts.gstatic.com',
+			'crossorigin' => '',
+		);
+	}
+
+	return $urls;
 }
 
 /**

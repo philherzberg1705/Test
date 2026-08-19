@@ -34,12 +34,18 @@
 	--bw-on-grey: var(--bw-color-beige);
 	--bw-on-beige: var(--bw-color-green);
 
-	/* ---------- Site-Basis (nicht Teil der 4 Content-Farben) ---------- */
-	--bw-color-page-bg: var(--bw-color-white);
+	/* ---------- Site-Basis ----------
+	 * Bewusst kein Standard-Weiß: Beige ist die neutrale Basis der Palette
+	 * (§2.1) und trägt bereits eine definierte Kontrastfarbe (Green). */
+	--bw-color-page-bg: var(--bw-color-beige);
 	--bw-color-page-text: var(--bw-color-grey);
 	--bw-color-heading-text: var(--bw-color-green);
-	--bw-color-muted: color-mix(in oklab, var(--bw-color-grey) 65%, var(--bw-color-white));
-	--bw-color-border: color-mix(in oklab, var(--bw-color-grey) 18%, var(--bw-color-white));
+	--bw-color-muted: color-mix(in oklab, var(--bw-color-grey) 65%, var(--bw-color-beige));
+	--bw-color-border: color-mix(in oklab, var(--bw-color-grey) 25%, var(--bw-color-beige));
+	/* Elevierte UI-Flächen (Inputs, Cards, Modals) dürfen sich von der
+	 * Beige-Seitenbasis abheben — bewusste Verwendung von Weiß als
+	 * "Oberflächen"-Ton, nicht als Seitenhintergrund. */
+	--bw-color-surface: var(--bw-color-white);
 	--bw-color-focus-ring: var(--bw-color-terrakotta);
 	--bw-color-danger: #b3261e;
 	--bw-color-success: var(--bw-color-green);

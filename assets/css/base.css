@@ -3,40 +3,11 @@
  * Verwendet ausschließlich Tokens aus tokens.css, keine Einzelwerte.
  */
 
-/* TODO Assets: selbst gehostete Schriftdateien ergänzen, sobald verfügbar
- * (assets/fonts/special-gothic-condensed-one.woff2, open-sans-{400,600,700}.woff2).
- * Bis dahin greift der Fallback-Stack aus tokens.css verlustfrei. */
-@font-face {
-	font-family: 'Special Gothic Condensed One';
-	src: url('../fonts/special-gothic-condensed-one.woff2') format('woff2');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Open Sans';
-	src: url('../fonts/open-sans-400.woff2') format('woff2');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Open Sans';
-	src: url('../fonts/open-sans-600.woff2') format('woff2');
-	font-weight: 600;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Open Sans';
-	src: url('../fonts/open-sans-700.woff2') format('woff2');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
+/* Schriften laufen vorerst über Google Fonts (Einbindung + Preconnect in
+ * inc/core/enqueue.php). TODO Assets: sobald finale Lizenzdateien vorliegen,
+ * hier auf selbst gehostete @font-face umstellen und den Google-Fonts-Enqueue
+ * in enqueue.php entfernen — Family-Namen in tokens.css bleiben dabei gleich,
+ * es ändert sich nur die Quelle. */
 
 /* ---------- Minimal-Reset ---------- */
 *,
@@ -218,7 +189,7 @@ label,
 	padding: var(--bw-space-3) var(--bw-space-4);
 	border: 1px solid var(--bw-color-border);
 	border-radius: var(--bw-radius-sm);
-	background: var(--bw-color-white);
+	background: var(--bw-color-surface);
 	font-size: var(--bw-text-input);
 	transition: border-color var(--bw-duration-fast) var(--bw-ease-standard);
 }
