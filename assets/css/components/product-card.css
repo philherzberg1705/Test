@@ -51,6 +51,27 @@
 	filter: drop-shadow(0 10px 18px rgb(26 26 26 / 0.16));
 }
 
+.bw-wishlist-btn--icon {
+	position: absolute;
+	top: var(--bw-space-2);
+	right: var(--bw-space-2);
+	z-index: 3;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: var(--bw-radius-full);
+	background: color-mix(in oklab, var(--bw-color-surface) 85%, transparent);
+	backdrop-filter: blur(4px);
+	color: var(--bw-color-page-text);
+}
+
+.bw-wishlist-btn--icon .bw-icon {
+	width: 18px;
+	height: 18px;
+}
+
 .bw-product-card__variants {
 	display: flex;
 	gap: var(--bw-space-2);

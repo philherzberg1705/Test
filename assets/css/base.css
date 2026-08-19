@@ -290,6 +290,32 @@ label,
 	color: inherit;
 }
 
+/* ---------- Wishlist-Button (§7) — geteilt zwischen Card-Overlay- und
+   Produktseiten-Variante, daher hier statt in einer Komponentendatei. ---------- */
+.bw-wishlist-btn .bw-icon {
+	transition: color var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+.bw-wishlist-btn.is-active .bw-icon {
+	color: var(--bw-color-terrakotta);
+}
+
+@keyframes bw-wishlist-pop {
+	0% {
+		transform: scale(1);
+	}
+	45% {
+		transform: scale(1.3);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.bw-wishlist-btn.is-pop .bw-icon {
+	animation: bw-wishlist-pop var(--bw-duration-normal) var(--bw-ease-emphasized);
+}
+
 /* Alle abgerundeten UI-Elemente, die nicht über die volle Breite gehen (§4) */
 .bw-card,
 .bw-panel,

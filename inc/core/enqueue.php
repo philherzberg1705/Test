@@ -99,7 +99,7 @@ function bodywings_enqueue_assets(): void {
 		);
 	}
 
-	if ( bodywings_is_woocommerce_active() && ( is_shop() || is_product_taxonomy() || is_search() ) ) {
+	if ( bodywings_is_woocommerce_active() && ( is_shop() || is_product_taxonomy() || is_search() || is_page_template( 'template-wishlist.php' ) ) ) {
 		wp_enqueue_style(
 			'bodywings-shop',
 			BODYWINGS_URI . '/assets/css/components/shop.css',
@@ -175,6 +175,19 @@ function bodywings_enqueue_assets(): void {
 			'in_footer' => true,
 		)
 	);
+
+	if ( bodywings_is_woocommerce_active() ) {
+		wp_enqueue_script(
+			'bodywings-wishlist',
+			BODYWINGS_URI . '/assets/js/ajax/wishlist.js',
+			array( 'bodywings-core' ),
+			bodywings_asset_version( $js_dir . '/ajax/wishlist.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
 
 	wp_enqueue_script(
 		'bodywings-search',
