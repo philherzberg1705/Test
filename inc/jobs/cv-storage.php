@@ -89,6 +89,50 @@ function bodywings_store_job_application_cv( array $file ) {
 	);
 }
 
+/**
+ * Löscht die Lebenslauf-Datei + den zufälligen Token-Ordner einer
+ * Bewerbung von der Platte (§32/DSGVO — genutzt von der automatischen
+ * Löschfrist, siehe inc/jobs/retention.php). Rein dateisystemseitig, der
+ * Post/Meta bleiben unberührt — das Aufräumen des Posts übernimmt der
+ * Aufrufer bewusst separat.
+ */
+function bodywings_delete_job_application_cv_files( int $application_id ): void {
+	$relpath = get_post_meta( $application_id, '_bw_cv_relpath', true );
+
+	if ( ! $relpath ) {
+		return;
+	}
+
+	$base_dir = bodywings_job_applications_base_dir();
+	$path     = $base_dir . '/' . $relpath;
+
+	// Nur innerhalb des geschützten Basisordners löschen (Path-Traversal-
+	// Schutz, gleiche Prüfung wie beim Download-Handler).
+	if ( ! file_exists( $path ) || 0 !== strpos( realpath( $path ), realpath( $base_dir ) ) ) {
+		return;
+	}
+
+	wp_delete_file( $path );
+
+	$token_dir = dirname( $path );
+	if ( is_dir( $token_dir ) && 0 === strpos( realpath( $token_dir ), realpath( $base_dir ) ) ) {
+		@rmdir( $token_dir ); // phpcs:ignore WordPress.PHP.NoSilencedErrors -- nur leer löschbar, sonst harmloses No-op.
+	}
+}
+
+add_action( 'before_delete_post', 'bodywings_delete_job_application_cv_files_on_post_delete' );
+
+/**
+ * Räumt auch dann auf, wenn eine Bewerbung nicht über den Retention-Cron
+ * (inc/jobs/retention.php), sondern manuell im Backend endgültig gelöscht
+ * wird — sonst bliebe die Lebenslauf-Datei als Datenleiche liegen.
+ */
+function bodywings_delete_job_application_cv_files_on_post_delete( int $post_id ): void {
+	if ( 'bw_job_application' === get_post_type( $post_id ) ) {
+		bodywings_delete_job_application_cv_files( $post_id );
+	}
+}
+
 function bodywings_get_job_application_cv_download_url( int $application_id ): string {
 	$relpath = get_post_meta( $application_id, '_bw_cv_relpath', true );
 

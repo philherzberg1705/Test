@@ -56,7 +56,15 @@ $bw_job_id = get_the_ID();
 
 		<label class="bw-job-application-form__consent">
 			<input type="checkbox" name="consent" required />
-			<span><?php esc_html_e( 'Ich stimme zu, dass meine Angaben zur Bearbeitung dieser Bewerbung gespeichert und verarbeitet werden. Nach Abschluss des Verfahrens werden die Daten gelöscht.', 'bodywings' ); ?></span>
+			<span>
+				<?php
+				printf(
+					/* translators: %d: Anzahl Monate bis zur automatischen Löschung nach Abschluss des Verfahrens */
+					esc_html__( 'Ich stimme zu, dass meine Angaben zur Bearbeitung dieser Bewerbung gespeichert und verarbeitet werden. Nach Abschluss des Verfahrens werden die Daten automatisch spätestens nach %d Monaten gelöscht.', 'bodywings' ),
+					(int) round( bodywings_get_job_application_retention_days() / 30 )
+				);
+				?>
+			</span>
 		</label>
 
 		<button type="submit" class="bw-btn bw-job-application-form__submit" data-bw-job-application-submit>

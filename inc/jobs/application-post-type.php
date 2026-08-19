@@ -157,5 +157,19 @@ function bodywings_save_job_application_status( int $post_id ): void {
 	}
 
 	$status = isset( $_POST['bw_application_status'] ) ? sanitize_key( wp_unslash( $_POST['bw_application_status'] ) ) : 'new';
-	update_post_meta( $post_id, '_bw_status', in_array( $status, array( 'new', 'reviewing', 'rejected', 'hired' ), true ) ? $status : 'new' );
+	$status = in_array( $status, array( 'new', 'reviewing', 'rejected', 'hired' ), true ) ? $status : 'new';
+
+	update_post_meta( $post_id, '_bw_status', $status );
+
+	// Zeitstempel für die automatische Löschfrist (§32/DSGVO, siehe
+	// inc/jobs/retention.php) — läuft erst ab einem abgeschlossenen
+	// Verfahren, nicht ab Eingang der Bewerbung. Bei Rückstufung auf
+	// "new"/"reviewing" (z.B. Korrektur) wird die Frist wieder aufgehoben.
+	if ( in_array( $status, array( 'rejected', 'hired' ), true ) ) {
+		if ( ! get_post_meta( $post_id, '_bw_status_concluded_at', true ) ) {
+			update_post_meta( $post_id, '_bw_status_concluded_at', current_time( 'mysql' ) );
+		}
+	} else {
+		delete_post_meta( $post_id, '_bw_status_concluded_at' );
+	}
 }

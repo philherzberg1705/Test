@@ -90,6 +90,7 @@ function bodywings_ajax_submit_job_application(): void {
 	update_post_meta( $application_id, '_bw_consent_at', current_time( 'mysql' ) );
 
 	bodywings_send_job_application_notification( $application_id, $job_id, $name, $email );
+	bodywings_send_job_application_confirmation( $job_id, $name, $email );
 
 	wp_send_json_success( array(
 		'message' => __( 'Danke für deine Bewerbung! Wir melden uns zeitnah bei dir.', 'bodywings' ),
@@ -135,4 +136,38 @@ function bodywings_send_job_application_notification( int $application_id, int $
 	);
 
 	wp_mail( $to, $subject, $body );
+}
+
+/**
+ * Eingangsbestätigung an die bewerbende Person selbst — bisher fehlte
+ * diese komplett, nur der Arbeitgeber wurde benachrichtigt. Enthält auch
+ * den tatsächlichen Löschzeitraum (bodywings_get_job_application_retention_days(),
+ * siehe inc/jobs/retention.php), damit die Zusage aus der Einwilligung im
+ * Formular hier noch einmal schriftlich bestätigt wird.
+ */
+function bodywings_send_job_application_confirmation( int $job_id, string $name, string $email ): void {
+	$subject = sprintf(
+		/* translators: %s: job title */
+		__( 'Deine Bewerbung für „%s“ ist eingegangen', 'bodywings' ),
+		get_the_title( $job_id )
+	);
+
+	$retention_months = (int) round( bodywings_get_job_application_retention_days() / 30 );
+
+	$body = sprintf(
+		/* translators: 1: applicant name, 2: job title, 3: site name, 4: retention period in months */
+		__(
+			"Hallo %1\$s,\n\n" .
+			"vielen Dank für deine Bewerbung auf die Stelle „%2\$s“ bei %3\$s. Wir haben deine Unterlagen erhalten und melden uns, sobald wir sie geprüft haben.\n\n" .
+			"Hinweis zum Datenschutz: Deine Angaben werden ausschließlich zur Bearbeitung dieser Bewerbung verwendet und spätestens %4\$d Monate nach Abschluss des Verfahrens automatisch gelöscht.\n\n" .
+			"Diese Nachricht ist eine automatische Bestätigung, du musst nicht darauf antworten.",
+			'bodywings'
+		),
+		$name,
+		get_the_title( $job_id ),
+		get_bloginfo( 'name' ),
+		$retention_months
+	);
+
+	wp_mail( $email, $subject, $body );
 }
