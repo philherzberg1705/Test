@@ -1,0 +1,167 @@
+/**
+ * Generisches Offcanvas-Panel (Menü, Suche, Sprache/Währung; später auch
+ * Filter/Side-Cart). Ein Motion-Vertrag für alle Panels (§21/§23):
+ * CSS-Transition, da einfacher Hover-/State-Wechsel ohne Sequenz/Scroll.
+ */
+
+html.bw-offcanvas-open {
+	overflow: hidden;
+}
+
+.bw-offcanvas {
+	position: fixed;
+	inset: 0;
+	z-index: var(--bw-z-offcanvas);
+	visibility: hidden;
+}
+
+.bw-offcanvas.is-open {
+	visibility: visible;
+}
+
+.bw-offcanvas__backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgb(26 26 26 / 0.4);
+	opacity: 0;
+	transition: opacity var(--bw-duration-normal) var(--bw-ease-standard);
+}
+
+.bw-offcanvas.is-open .bw-offcanvas__backdrop {
+	opacity: 1;
+}
+
+.bw-offcanvas__panel {
+	position: absolute;
+	inset-block: 0;
+	right: 0;
+	width: 100%;
+	max-width: 480px;
+	background: var(--bw-color-surface);
+	color: var(--bw-color-page-text);
+	box-shadow: var(--bw-shadow-lg);
+	border-radius: var(--bw-radius-lg) 0 0 var(--bw-radius-lg);
+	padding: var(--bw-space-6) var(--bw-space-5);
+	overflow-y: auto;
+	transform: translateX(100%);
+	transition: transform var(--bw-duration-normal) var(--bw-ease-emphasized);
+}
+
+.bw-offcanvas.is-open .bw-offcanvas__panel {
+	transform: translateX(0);
+}
+
+@media (max-width: 599px) {
+	.bw-offcanvas__panel {
+		max-width: none;
+		border-radius: 0;
+	}
+}
+
+.bw-offcanvas__close {
+	position: absolute;
+	top: var(--bw-space-4);
+	right: var(--bw-space-4);
+}
+
+.bw-offcanvas__nav {
+	margin-top: var(--bw-space-9);
+}
+
+.bw-offcanvas__nav-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-1);
+}
+
+.bw-offcanvas__nav-list a {
+	display: block;
+	padding-block: var(--bw-space-3);
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-h4);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	border-bottom: 1px solid var(--bw-color-border);
+	color: var(--bw-color-heading-text);
+}
+
+.bw-offcanvas__secondary {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-3);
+	margin-top: var(--bw-space-8);
+	padding-top: var(--bw-space-5);
+	border-top: 1px solid var(--bw-color-border);
+}
+
+.bw-offcanvas__secondary-link {
+	display: flex;
+	align-items: center;
+	gap: var(--bw-space-3);
+	font-family: var(--bw-font-body);
+	font-size: var(--bw-text-body);
+	text-align: left;
+	color: inherit;
+}
+
+@media (min-width: 600px) {
+	.bw-offcanvas__secondary {
+		display: none;
+	}
+}
+
+/* ---------- Suche ---------- */
+.bw-offcanvas__panel--search {
+	max-width: 640px;
+}
+
+.bw-search-form {
+	display: flex;
+	align-items: center;
+	gap: var(--bw-space-2);
+	margin-top: var(--bw-space-9);
+	padding-bottom: var(--bw-space-2);
+	border-bottom: 2px solid var(--bw-color-border);
+}
+
+.bw-search-form__input {
+	flex: 1;
+	border: 0;
+	padding-block: var(--bw-space-2);
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-h4);
+	background: transparent;
+}
+
+.bw-search-form__input:focus-visible {
+	outline: none;
+}
+
+.bw-search-results {
+	margin-top: var(--bw-space-6);
+}
+
+/* ---------- Sprache/Währung ---------- */
+.bw-offcanvas__section {
+	margin-top: var(--bw-space-6);
+}
+
+.bw-offcanvas__panel--locale .bw-offcanvas__section:first-of-type {
+	margin-top: var(--bw-space-9);
+}
+
+.bw-offcanvas__section-title {
+	font-size: var(--bw-text-h6);
+	margin-bottom: var(--bw-space-3);
+}
+
+.bw-locale-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-2);
+}
+
+.bw-locale-list__item.is-active {
+	color: var(--bw-color-green);
+	font-weight: var(--bw-weight-semibold);
+}

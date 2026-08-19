@@ -48,6 +48,39 @@ function bodywings_setup(): void {
 
 	add_image_size( 'bodywings-product-card', 640, 640, true );
 	add_image_size( 'bodywings-product-zoom', 1600, 1600, false );
+
+	/*
+	 * §5/§2.2: Content-Elemente dürfen nur aus den 4 Theme-Farben wählen,
+	 * keine freie Farbwahl (§1 "keine unnötigen Farben"). WordPress erzeugt
+	 * dafür automatisch Klassen wie has-bw-green-background-color, die in
+	 * base.css auf dieselben --bw-on-* Kontrast-Tokens gemappt werden wie
+	 * die [data-bw-bg]-Utility für PHP-Templates.
+	 */
+	add_theme_support( 'editor-color-palette', array(
+		array(
+			'name'  => __( 'Green', 'bodywings' ),
+			'slug'  => 'bw-green',
+			'color' => '#2d4f1e',
+		),
+		array(
+			'name'  => __( 'Beige', 'bodywings' ),
+			'slug'  => 'bw-beige',
+			'color' => '#f5e6cc',
+		),
+		array(
+			'name'  => __( 'Terrakotta', 'bodywings' ),
+			'slug'  => 'bw-terrakotta',
+			'color' => '#e27d60',
+		),
+		array(
+			'name'  => __( 'Grey', 'bodywings' ),
+			'slug'  => 'bw-grey',
+			'color' => '#4a4a4a',
+		),
+	) );
+	add_theme_support( 'disable-custom-colors' );
+	add_theme_support( 'disable-custom-gradients' );
+	add_theme_support( 'editor-gradient-presets', array() );
 }
 
 /**

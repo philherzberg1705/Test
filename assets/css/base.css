@@ -118,6 +118,10 @@ small,
 	font-size: var(--bw-text-small);
 }
 
+.bw-color-muted {
+	color: var(--bw-color-muted);
+}
+
 label,
 .bw-label {
 	font-family: var(--bw-font-heading);
@@ -155,6 +159,24 @@ label,
 	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
 	border: 0;
+}
+
+/* Skip-Link: für sehende Tastaturnutzer:innen beim Fokussieren sichtbar (§25). */
+.bw-skip-link:focus {
+	position: fixed;
+	top: var(--bw-space-2);
+	left: var(--bw-space-2);
+	width: auto;
+	height: auto;
+	padding: var(--bw-space-3) var(--bw-space-5);
+	margin: 0;
+	overflow: visible;
+	clip: auto;
+	white-space: normal;
+	background: var(--bw-color-green);
+	color: var(--bw-on-green);
+	border-radius: var(--bw-radius-sm);
+	z-index: var(--bw-z-toast);
 }
 
 /* ---------- Buttons (Grundform, Varianten in components/buttons.css) ---------- */
@@ -221,6 +243,26 @@ label,
 	color: var(--bw-on-beige);
 }
 
+/* Gutenberg-Pendant: Editoren wählen im Group-/Cover-Block eine der 4
+ * eingeschränkten Theme-Farben (siehe editor-color-palette in setup.php),
+ * WordPress setzt automatisch has-bw-{slug}-background-color. */
+.has-bw-green-background-color {
+	background-color: var(--bw-color-green);
+	color: var(--bw-on-green);
+}
+.has-bw-terrakotta-background-color {
+	background-color: var(--bw-color-terrakotta);
+	color: var(--bw-on-terrakotta);
+}
+.has-bw-grey-background-color {
+	background-color: var(--bw-color-grey);
+	color: var(--bw-on-grey);
+}
+.has-bw-beige-background-color {
+	background-color: var(--bw-color-beige);
+	color: var(--bw-on-beige);
+}
+
 /* Innerhalb eines eingefärbten Content-Elements sollen Überschriften die
  * automatische Textfarbe erben statt der globalen Heading-Farbe. */
 [data-bw-bg] h1,
@@ -228,7 +270,13 @@ label,
 [data-bw-bg] h3,
 [data-bw-bg] h4,
 [data-bw-bg] h5,
-[data-bw-bg] h6 {
+[data-bw-bg] h6,
+[class*='has-bw-'][class*='-background-color'] h1,
+[class*='has-bw-'][class*='-background-color'] h2,
+[class*='has-bw-'][class*='-background-color'] h3,
+[class*='has-bw-'][class*='-background-color'] h4,
+[class*='has-bw-'][class*='-background-color'] h5,
+[class*='has-bw-'][class*='-background-color'] h6 {
 	color: inherit;
 }
 

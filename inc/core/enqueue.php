@@ -45,6 +45,21 @@ function bodywings_enqueue_assets(): void {
 		bodywings_asset_version( $css_dir . '/base.css' )
 	);
 
+	// Header + Offcanvas rendern auf jeder Seite (Theme-Shell), daher global.
+	wp_enqueue_style(
+		'bodywings-header',
+		BODYWINGS_URI . '/assets/css/components/header.css',
+		array( 'bodywings-base' ),
+		bodywings_asset_version( $css_dir . '/components/header.css' )
+	);
+
+	wp_enqueue_style(
+		'bodywings-offcanvas',
+		BODYWINGS_URI . '/assets/css/components/offcanvas.css',
+		array( 'bodywings-base' ),
+		bodywings_asset_version( $css_dir . '/components/offcanvas.css' )
+	);
+
 	$js_dir = BODYWINGS_DIR . '/assets/js';
 
 	wp_enqueue_script(
@@ -52,6 +67,17 @@ function bodywings_enqueue_assets(): void {
 		BODYWINGS_URI . '/assets/js/core.js',
 		array(),
 		bodywings_asset_version( $js_dir . '/core.js' ),
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
+	);
+
+	wp_enqueue_script(
+		'bodywings-offcanvas',
+		BODYWINGS_URI . '/assets/js/offcanvas.js',
+		array( 'bodywings-core' ),
+		bodywings_asset_version( $js_dir . '/offcanvas.js' ),
 		array(
 			'strategy'  => 'defer',
 			'in_footer' => true,
