@@ -90,6 +90,15 @@ function bodywings_enqueue_assets(): void {
 		);
 	}
 
+	if ( bodywings_is_woocommerce_active() && ( is_shop() || is_product_taxonomy() || is_search() ) ) {
+		wp_enqueue_style(
+			'bodywings-shop',
+			BODYWINGS_URI . '/assets/css/components/shop.css',
+			array( 'bodywings-base' ),
+			bodywings_asset_version( $css_dir . '/components/shop.css' )
+		);
+	}
+
 	wp_enqueue_script(
 		'bodywings-core',
 		BODYWINGS_URI . '/assets/js/core.js',
