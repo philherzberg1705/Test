@@ -37,7 +37,7 @@ function bodywings_build_job_schema( int $job_id ): ?array {
 		return null;
 	}
 
-	$logo_url = bodywings_get_site_logo_url();
+	$org_name = bodywings_get_job_org_name();
 
 	$schema = array(
 		'@context'          => 'https://schema.org/',
@@ -47,14 +47,14 @@ function bodywings_build_job_schema( int $job_id ): ?array {
 		'datePosted'        => get_the_date( 'c', $job_id ),
 		'identifier'        => array(
 			'@type' => 'PropertyValue',
-			'name'  => get_bloginfo( 'name' ),
+			'name'  => $org_name,
 			'value' => (string) $job_id,
 		),
 		'hiringOrganization' => array_filter( array(
 			'@type' => 'Organization',
-			'name'  => get_bloginfo( 'name' ),
+			'name'  => $org_name,
 			'sameAs' => home_url( '/' ),
-			'logo'  => $logo_url,
+			'logo'  => bodywings_get_job_org_logo_url(),
 		) ),
 	);
 
