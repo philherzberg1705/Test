@@ -1,0 +1,20 @@
+/*
+Theme Name:   BODYWINGS
+Theme URI:    https://bodywings.example
+Author:       BODYWINGS
+Author URI:   https://bodywings.example
+Description:  Eigenständiges, minimalistisch-premium WooCommerce-Theme für BODYWINGS. Zentrales Design-System, animierte Micro-Interactions, AJAX-first UX.
+Version:      0.1.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.1
+Requires Plugins: woocommerce
+License:      Proprietary
+Text Domain:  bodywings
+Domain Path:  /languages
+
+Stylesheet ist bewusst leer: alle tatsächlichen Styles kommen aus
+assets/css/*.css und werden über inc/core/enqueue.php geladen, damit
+WordPress-Standardverhalten (Style-Autoload) nicht mit dem eigenen
+Layer-System kollidiert.
+*/
