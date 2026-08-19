@@ -279,6 +279,27 @@ function bodywings_enqueue_assets(): void {
 	) );
 }
 
+add_action( 'wp_enqueue_scripts', 'bodywings_dequeue_unused_woocommerce_scripts', 20 );
+
+/**
+ * Entfernt WooCommerce-Default-Skripte, die durch das eigene AJAX-System
+ * ersetzt sind und sonst unnötige Requests/Polling verursachen (§26):
+ * - wc-cart-fragments pollt periodisch admin-ajax.php für Fragment-Widgets,
+ *   die dieses Theme nicht rendert (eigener Side-Cart, siehe inc/ajax/cart.php).
+ * - wc-add-to-cart hängt an .ajax_add_to_cart-Loop-Buttons, die die eigene
+ *   Produktkarte (§8) nie ausgibt.
+ * wc-add-to-cart-variation bleibt aktiv — Variantenwechsel (§12) baut
+ * bewusst auf WooCommerce-Kernlogik statt eigenem Nachbau (§31).
+ */
+function bodywings_dequeue_unused_woocommerce_scripts(): void {
+	if ( ! bodywings_is_woocommerce_active() ) {
+		return;
+	}
+
+	wp_dequeue_script( 'wc-cart-fragments' );
+	wp_dequeue_script( 'wc-add-to-cart' );
+}
+
 add_filter( 'wp_resource_hints', 'bodywings_google_fonts_preconnect', 10, 2 );
 
 /**
