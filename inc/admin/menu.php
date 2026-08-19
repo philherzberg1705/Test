@@ -80,6 +80,25 @@ function bodywings_render_dashboard_page(): void {
 							: esc_html__( 'nicht konfiguriert (lokale Speicherung aktiv)', 'bodywings' ); ?>
 					</td>
 				</tr>
+				<?php if ( function_exists( 'bodywings_get_exchange_rates_updated_at' ) ) : ?>
+					<tr>
+						<th><?php esc_html_e( 'Wechselkurse', 'bodywings' ); ?></th>
+						<td>
+							<?php
+							$bw_updated = bodywings_get_exchange_rates_updated_at();
+							echo $bw_updated
+								? esc_html(
+									sprintf(
+										/* translators: %s: human-readable time difference, e.g. "12 minutes" */
+										__( 'zuletzt aktualisiert vor %s', 'bodywings' ),
+										human_time_diff( $bw_updated )
+									)
+								)
+								: esc_html__( 'noch nicht abgerufen', 'bodywings' );
+							?>
+						</td>
+					</tr>
+				<?php endif; ?>
 			</tbody>
 		</table>
 	</div>

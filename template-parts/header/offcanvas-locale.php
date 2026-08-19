@@ -1,9 +1,9 @@
 <?php
 /**
- * Offcanvas Sprache/Währung. Zeigt vorerst die Basiswährung EUR (§18) und
- * bindet WPML-Sprachen ein, falls aktiv (§28: Plugin vorhanden → Integration
- * aktivieren, sonst sinnvoller Fallback). Das echte Umrechnungssystem
- * (Task 15) hängt sich später an .bw-currency-switcher an.
+ * Offcanvas Sprache/Währung. Bindet WPML-Sprachen ein, falls aktiv (§28:
+ * Plugin vorhanden → Integration aktivieren). Währungsumschalter (§18):
+ * überlässt die Anzeige einem erkannten Mehrwährungsplugin, sonst eigener
+ * Cookie-basierter Fallback (inc/integrations/currency/display.php).
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -36,12 +36,40 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</section>
 		<?php endif; ?>
 
-		<section class="bw-offcanvas__section bw-currency-switcher" data-bw-currency-switcher>
-			<h2 class="bw-offcanvas__section-title"><?php esc_html_e( 'Währung', 'bodywings' ); ?></h2>
-			<p class="bw-currency-switcher__current">
-				<?php esc_html_e( 'EUR €', 'bodywings' ); ?>
-				<span class="bw-text-small bw-color-muted"><?php esc_html_e( '(Basiswährung)', 'bodywings' ); ?></span>
-			</p>
-		</section>
+		<?php if ( function_exists( 'bodywings_get_selected_currency' ) && ! bodywings_has_multicurrency_plugin() ) : ?>
+			<section class="bw-offcanvas__section bw-currency-switcher">
+				<h2 class="bw-offcanvas__section-title"><?php esc_html_e( 'Währung', 'bodywings' ); ?></h2>
+				<?php $bw_selected_currency = bodywings_get_selected_currency(); ?>
+				<ul class="bw-locale-list">
+					<li>
+						<a
+							class="bw-locale-list__item<?php echo 'EUR' === $bw_selected_currency ? ' is-active' : ''; ?>"
+							href="<?php echo esc_url( remove_query_arg( 'bw_currency' ) ); ?>"
+						>
+							<?php esc_html_e( 'EUR €', 'bodywings' ); ?>
+							<span class="bw-text-small bw-color-muted"><?php esc_html_e( '(Basiswährung)', 'bodywings' ); ?></span>
+						</a>
+					</li>
+					<?php foreach ( bodywings_get_supported_target_currencies() as $bw_currency_code ) : ?>
+						<li>
+							<a
+								class="bw-locale-list__item<?php echo $bw_currency_code === $bw_selected_currency ? ' is-active' : ''; ?>"
+								href="<?php echo esc_url( add_query_arg( 'bw_currency', $bw_currency_code ) ); ?>"
+							>
+								<?php echo esc_html( $bw_currency_code . ' ' . get_woocommerce_currency_symbol( $bw_currency_code ) ); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+				<p class="bw-text-small bw-color-muted">
+					<?php esc_html_e( 'Umgerechnete Preise sind unverbindliche Richtwerte, Abrechnung erfolgt in EUR.', 'bodywings' ); ?>
+				</p>
+			</section>
+		<?php elseif ( function_exists( 'bodywings_has_multicurrency_plugin' ) ) : ?>
+			<section class="bw-offcanvas__section bw-currency-switcher">
+				<h2 class="bw-offcanvas__section-title"><?php esc_html_e( 'Währung', 'bodywings' ); ?></h2>
+				<p class="bw-text-small bw-color-muted"><?php echo esc_html( get_woocommerce_currency() ); ?></p>
+			</section>
+		<?php endif; ?>
 	</div>
 </div>

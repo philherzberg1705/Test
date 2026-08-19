@@ -316,6 +316,13 @@ label,
 	animation: bw-wishlist-pop var(--bw-duration-normal) var(--bw-ease-emphasized);
 }
 
+/* Ca.-Umrechnung neben dem echten EUR-Preis (§18-Fallback ohne Plugin). */
+.bw-price-converted {
+	font-size: var(--bw-text-small);
+	color: var(--bw-color-muted);
+	font-weight: var(--bw-weight-regular);
+}
+
 /* Alle abgerundeten UI-Elemente, die nicht über die volle Breite gehen (§4) */
 .bw-card,
 .bw-panel,
