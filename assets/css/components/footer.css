@@ -1,0 +1,108 @@
+/**
+ * Site-Footer + Newsletter-Modul (§19). Farbe/Kontrast kommen automatisch
+ * über data-bw-bg="green" aus base.css — hier nur Layout + Formular-Details.
+ */
+
+.bw-site-footer {
+	margin-top: var(--bw-space-10);
+	padding-block: var(--bw-space-9) var(--bw-space-6);
+}
+
+.bw-site-footer__top {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bw-space-8);
+	justify-content: space-between;
+}
+
+.bw-newsletter {
+	flex: 1 1 360px;
+	max-width: 480px;
+}
+
+.bw-newsletter__title {
+	font-size: var(--bw-text-h4);
+	margin-bottom: var(--bw-space-2);
+}
+
+.bw-newsletter__intro {
+	margin-bottom: var(--bw-space-4);
+	opacity: 0.85;
+}
+
+.bw-newsletter-form__row {
+	display: flex;
+	gap: var(--bw-space-2);
+}
+
+.bw-newsletter-form__input {
+	flex: 1;
+}
+
+/* Beige-auf-Grün statt Standard-Button (Green-auf-Grün wäre unsichtbar). */
+.bw-newsletter-form__submit {
+	background: var(--bw-color-beige);
+	color: var(--bw-color-green);
+	flex-shrink: 0;
+}
+
+.bw-newsletter-form__submit:hover {
+	background: color-mix(in oklab, var(--bw-color-beige) 85%, black);
+}
+
+.bw-newsletter-form.is-loading .bw-newsletter-form__submit {
+	opacity: 0.7;
+	cursor: progress;
+}
+
+.bw-newsletter-form__consent {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--bw-space-2);
+	margin-top: var(--bw-space-3);
+	font-size: var(--bw-text-small);
+}
+
+.bw-newsletter-form__consent input {
+	margin-top: 3px;
+	flex-shrink: 0;
+	accent-color: var(--bw-color-beige);
+}
+
+.bw-newsletter-form__consent a {
+	text-decoration: underline;
+}
+
+.bw-newsletter-form__status {
+	margin-top: var(--bw-space-2);
+	min-height: 1.25em;
+	font-size: var(--bw-text-small);
+}
+
+.bw-newsletter-form__status.is-error {
+	color: var(--bw-color-terrakotta);
+}
+
+.bw-newsletter-form__status.is-success {
+	font-weight: var(--bw-weight-semibold);
+}
+
+.bw-site-footer__nav-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-2);
+}
+
+.bw-site-footer__bottom {
+	margin-top: var(--bw-space-8);
+	padding-top: var(--bw-space-4);
+	border-top: 1px solid color-mix(in oklab, var(--bw-on-green) 25%, transparent);
+	opacity: 0.8;
+}
+
+@media (max-width: 599px) {
+	.bw-newsletter-form__row {
+		flex-direction: column;
+		align-items: stretch;
+	}
+}

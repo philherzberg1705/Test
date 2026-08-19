@@ -15,29 +15,54 @@ define( 'BODYWINGS_DIR', get_template_directory() );
 define( 'BODYWINGS_URI', get_template_directory_uri() );
 
 /**
- * Lädt alle .php-Dateien in einem inc/-Unterverzeichnis (nicht rekursiv,
- * Reihenfolge alphabetisch). Fehlende Verzeichnisse werden übersprungen,
- * damit spätere Module ohne Änderungen an dieser Datei ergänzt werden können.
+ * Alle .php-Dateien unterhalb eines Verzeichnisses, rekursiv, alphabetisch
+ * nach vollem Pfad sortiert.
  */
-function bodywings_load_module_dir( string $relative_dir ): void {
-	$dir = BODYWINGS_DIR . '/' . trim( $relative_dir, '/' );
-
+function bodywings_collect_php_files( string $dir ): array {
 	if ( ! is_dir( $dir ) ) {
-		return;
+		return array();
 	}
 
-	$files = glob( $dir . '/*.php' );
+	$iterator = new RecursiveIteratorIterator(
+		new RecursiveDirectoryIterator( $dir, FilesystemIterator::SKIP_DOTS )
+	);
 
-	if ( ! $files ) {
-		return;
+	$files = array();
+
+	foreach ( $iterator as $file ) {
+		if ( $file->isFile() && 'php' === $file->getExtension() ) {
+			$files[] = $file->getPathname();
+		}
 	}
 
 	sort( $files );
 
-	foreach ( $files as $file ) {
+	return $files;
+}
+
+/**
+ * Lädt rekursiv alle .php-Dateien in einem inc/-Unterverzeichnis. Fehlende
+ * Verzeichnisse werden übersprungen, damit spätere Module ohne Änderungen
+ * an dieser Datei ergänzt werden können.
+ */
+function bodywings_load_module_dir( string $relative_dir ): void {
+	foreach ( bodywings_collect_php_files( BODYWINGS_DIR . '/' . trim( $relative_dir, '/' ) ) as $file ) {
 		require_once $file;
 	}
 }
+
+/*
+ * Interfaces zuerst: einige Module (z.B. Newsletter-, später Currency-
+ * Provider) trennen ein Interface von austauschbaren Implementierungen im
+ * selben Unterordner. require_once macht ein doppeltes Laden beim
+ * anschließenden regulären Modul-Durchlauf ungefährlich.
+ */
+foreach ( bodywings_collect_php_files( BODYWINGS_DIR . '/inc' ) as $bodywings_file ) {
+	if ( str_starts_with( basename( $bodywings_file ), 'interface-' ) ) {
+		require_once $bodywings_file;
+	}
+}
+unset( $bodywings_file );
 
 $bodywings_modules = array(
 	'inc/utils',

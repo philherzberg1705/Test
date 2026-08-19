@@ -60,6 +60,13 @@ function bodywings_enqueue_assets(): void {
 		bodywings_asset_version( $css_dir . '/components/offcanvas.css' )
 	);
 
+	wp_enqueue_style(
+		'bodywings-footer',
+		BODYWINGS_URI . '/assets/css/components/footer.css',
+		array( 'bodywings-base' ),
+		bodywings_asset_version( $css_dir . '/components/footer.css' )
+	);
+
 	$js_dir = BODYWINGS_DIR . '/assets/js';
 
 	wp_enqueue_script(
@@ -78,6 +85,17 @@ function bodywings_enqueue_assets(): void {
 		BODYWINGS_URI . '/assets/js/offcanvas.js',
 		array( 'bodywings-core' ),
 		bodywings_asset_version( $js_dir . '/offcanvas.js' ),
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
+	);
+
+	wp_enqueue_script(
+		'bodywings-newsletter',
+		BODYWINGS_URI . '/assets/js/ajax/newsletter.js',
+		array( 'bodywings-core' ),
+		bodywings_asset_version( $js_dir . '/ajax/newsletter.js' ),
 		array(
 			'strategy'  => 'defer',
 			'in_footer' => true,
