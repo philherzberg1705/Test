@@ -862,3 +862,146 @@
 	outline-offset: 2px;
 	border-radius: var(--bw-radius-sm);
 }
+
+/* ---------- Kategorien-Akkordeon ----------
+   Bewusst flex-basis statt max-height für den Öffnen/Schließen-Übergang:
+   einfacher, in jedem Browser vorhersagbar animierbar, und ein
+   gelegentlicher State-Wechsel (nicht kontinuierliches Ziehen wie beim
+   Vorher/Nachher-Slider) — Layout-Kosten hier unkritisch (§26). */
+.bw-category-accordion__heading {
+	font-size: var(--bw-text-h2);
+	text-align: center;
+	margin-bottom: var(--bw-space-6);
+}
+
+.bw-accordion {
+	display: flex;
+	flex-direction: column;
+	border-radius: var(--bw-radius-lg);
+	overflow: hidden;
+}
+
+.bw-accordion__item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 88px;
+	background-color: var(--bw-color-grey);
+	background-size: cover;
+	background-position: center;
+	color: var(--bw-color-beige);
+	transition: flex-basis var(--bw-duration-normal) var(--bw-ease-emphasized);
+}
+
+.bw-accordion__item.is-open {
+	flex-basis: 460px;
+}
+
+.bw-accordion__item:not(:first-child) {
+	border-top: 1px solid rgb(245 230 204 / 0.15);
+}
+
+/* Verdunkelung: geschlossen kräftig (nur Titel gut lesbar), offen dezenter
+   (Bild kommt zur Geltung, Text bleibt trotzdem lesbar). */
+.bw-accordion__item::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: rgb(26 26 26 / 0.78);
+	transition: background-color var(--bw-duration-normal) var(--bw-ease-standard);
+	pointer-events: none;
+}
+
+.bw-accordion__item.is-open::before {
+	background: rgb(26 26 26 / 0.4);
+}
+
+.bw-accordion__header {
+	margin: 0;
+	flex: 0 0 88px;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.bw-accordion__trigger {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 88px;
+	padding-inline: var(--bw-space-5);
+	color: inherit;
+	text-align: left;
+}
+
+.bw-accordion__title {
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-h4);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+}
+
+.bw-accordion__panel {
+	position: relative;
+	z-index: 1;
+	flex: 1 1 auto;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 0 var(--bw-space-5) var(--bw-space-5);
+}
+
+.bw-accordion__line {
+	display: block;
+	width: 0;
+	height: 2px;
+	margin-bottom: var(--bw-space-4);
+	background: var(--bw-color-terrakotta);
+	transition: width var(--bw-duration-slow) var(--bw-ease-emphasized);
+}
+
+.bw-accordion__item.is-open .bw-accordion__line {
+	width: 64px;
+}
+
+.bw-accordion__body {
+	opacity: 0;
+	transition: opacity var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+.bw-accordion__item.is-open .bw-accordion__body {
+	opacity: 1;
+	transition-delay: var(--bw-duration-fast);
+}
+
+.bw-accordion__text {
+	max-width: 60ch;
+	margin-bottom: var(--bw-space-3);
+}
+
+.bw-accordion__link {
+	display: inline-block;
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-small);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+@media (max-width: 479px) {
+	.bw-accordion__item.is-open {
+		flex-basis: 360px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bw-accordion__item,
+	.bw-accordion__item::before,
+	.bw-accordion__line,
+	.bw-accordion__body {
+		transition: none;
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/category-accordion",
+	"title": "Kategorien-Akkordeon",
+	"category": "bodywings",
+	"icon": "editor-kbd",
+	"description": "Kategorien als vertikales Akkordeon — erste offen, Bild+Beschreibung beim Öffnen, klappt beim Scrollen automatisch passend zur Bildschirmmitte (benötigt WooCommerce).",
+	"textdomain": "bodywings",
+	"keywords": ["kategorien", "akkordeon", "scroll"],
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"categoryIds": { "type": "array", "default": [] },
+		"count": { "type": "number", "default": 5 },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-category-accordion-edit",
+	"viewScript": "bodywings-block-category-accordion",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

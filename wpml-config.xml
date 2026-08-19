@@ -146,6 +146,11 @@
 				<field type="line">heading</field>
 			</fields>
 		</gutenberg-block>
+		<gutenberg-block type="bw/category-accordion">
+			<fields>
+				<field type="line">heading</field>
+			</fields>
+		</gutenberg-block>
 		<gutenberg-block type="bw/before-after">
 			<fields>
 				<field type="line">heading</field>

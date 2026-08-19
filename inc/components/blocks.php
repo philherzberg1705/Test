@@ -71,6 +71,36 @@ function bodywings_register_shared_block_assets(): void {
 		true
 	);
 
+	// Dieselben Handles wie inc/core/enqueue.php (dort für die
+	// Produktkarten-Scroll-Reveals registriert) — doppelte Registrierung
+	// mit identischen Argumenten ist unschädlich, WordPress enqueued den
+	// Handle so oder so nur einmal. Hier zusätzlich registriert, damit das
+	// Kategorien-Akkordeon GSAP/ScrollTrigger auch dann bekommt, wenn es
+	// auf einer Seite ohne Produktkarten-Kontext steht.
+	wp_register_script(
+		'bodywings-gsap',
+		BODYWINGS_URI . '/assets/js/vendor/gsap/gsap.min.js',
+		array(),
+		'3.15.0',
+		true
+	);
+
+	wp_register_script(
+		'bodywings-gsap-scrolltrigger',
+		BODYWINGS_URI . '/assets/js/vendor/gsap/ScrollTrigger.min.js',
+		array( 'bodywings-gsap' ),
+		'3.15.0',
+		true
+	);
+
+	wp_register_script(
+		'bodywings-block-category-accordion',
+		BODYWINGS_URI . '/assets/js/block-category-accordion.js',
+		array( 'bodywings-gsap-scrolltrigger' ),
+		bodywings_asset_version( $js_dir . '/block-category-accordion.js' ),
+		true
+	);
+
 	wp_register_style(
 		'bodywings-blocks-style',
 		BODYWINGS_URI . '/assets/css/components/blocks.css',
