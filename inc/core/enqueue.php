@@ -99,6 +99,26 @@ function bodywings_enqueue_assets(): void {
 		);
 	}
 
+	if ( bodywings_is_woocommerce_active() && ( is_shop() || is_product_taxonomy() ) ) {
+		wp_enqueue_style(
+			'bodywings-filter',
+			BODYWINGS_URI . '/assets/css/components/filter.css',
+			array( 'bodywings-offcanvas' ),
+			bodywings_asset_version( $css_dir . '/components/filter.css' )
+		);
+
+		wp_enqueue_script(
+			'bodywings-filter',
+			BODYWINGS_URI . '/assets/js/ajax/filter.js',
+			array( 'bodywings-offcanvas' ),
+			bodywings_asset_version( $js_dir . '/ajax/filter.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
+
 	if ( bodywings_is_woocommerce_active() && is_product() ) {
 		wp_enqueue_style(
 			'bodywings-product-page',

@@ -11,6 +11,26 @@
 	margin-bottom: var(--bw-space-6);
 }
 
+.bw-shop__layout {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--bw-space-6);
+}
+
+@media (min-width: 960px) {
+	.bw-shop__layout {
+		grid-template-columns: 260px 1fr;
+		align-items: start;
+	}
+}
+
+.bw-shop__content.is-loading .bw-product-grid,
+.bw-shop__content.is-loading .bw-shop__result-count {
+	opacity: 0.5;
+	pointer-events: none;
+	transition: opacity var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
 .bw-shop__title {
 	font-size: var(--bw-text-h2);
 }

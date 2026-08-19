@@ -1,12 +1,17 @@
 /**
- * Generische Offcanvas-Steuerung: Menü, Suche, Sprache/Währung heute,
- * Filter/Side-Cart in späteren Tasks. Eine Implementierung statt
- * Copy-Paste pro Feature (§33).
+ * Generische Offcanvas-Steuerung: Menü, Suche, Sprache/Währung, Filter,
+ * Side-Cart. Eine Implementierung statt Copy-Paste pro Feature (§33).
  *
  * Markup-Vertrag:
  *   [data-bw-offcanvas-trigger="name"]  öffnet [data-bw-offcanvas="name"]
  *   [data-bw-offcanvas-close]           innerhalb eines Panels schließt es
  *   Panel startet mit inert + aria-hidden="true" im Markup.
+ *
+ * Optionaler "responsive-static"-Modus (§13: Desktop klarer Filterbereich,
+ * Mobile Offcanvas — ein Panel für beides statt zweier Implementierungen):
+ *   [data-bw-offcanvas-responsive="960"] macht das Panel ab 960px als
+ *   normale, immer sichtbare/interaktive Fläche verfügbar (kein inert,
+ *   kein Overlay); darunter verhält es sich wie jedes andere Offcanvas.
  */
 ( function () {
 	'use strict';
@@ -96,13 +101,33 @@
 		}
 	}
 
+	function isResponsiveStatic( panel ) {
+		var minWidth = panel.getAttribute( 'data-bw-offcanvas-responsive' );
+		return !! minWidth && window.matchMedia( '(min-width: ' + minWidth + 'px)' ).matches;
+	}
+
+	function syncResponsivePanel( panel ) {
+		if ( isResponsiveStatic( panel ) ) {
+			panel.removeAttribute( 'inert' );
+			panel.setAttribute( 'aria-hidden', 'false' );
+			panel.classList.add( 'is-static' );
+			panel.classList.remove( 'is-open' );
+		} else {
+			panel.classList.remove( 'is-static' );
+			if ( panel !== activePanel ) {
+				panel.setAttribute( 'inert', '' );
+				panel.setAttribute( 'aria-hidden', 'true' );
+			}
+		}
+	}
+
 	function initOffcanvas() {
 		document.querySelectorAll( '[data-bw-offcanvas-trigger]' ).forEach( function ( trigger ) {
 			trigger.addEventListener( 'click', function ( event ) {
 				event.preventDefault();
 				var name = trigger.getAttribute( 'data-bw-offcanvas-trigger' );
 				var panel = document.querySelector( '[data-bw-offcanvas="' + name + '"]' );
-				if ( panel ) {
+				if ( panel && ! isResponsiveStatic( panel ) ) {
 					openOffcanvas( panel, trigger );
 				}
 			} );
@@ -115,6 +140,20 @@
 				} );
 			} );
 		} );
+
+		var responsivePanels = document.querySelectorAll( '[data-bw-offcanvas-responsive]' );
+
+		if ( responsivePanels.length ) {
+			responsivePanels.forEach( syncResponsivePanel );
+
+			var resizeTimer;
+			window.addEventListener( 'resize', function () {
+				window.clearTimeout( resizeTimer );
+				resizeTimer = window.setTimeout( function () {
+					responsivePanels.forEach( syncResponsivePanel );
+				}, 150 );
+			} );
+		}
 	}
 
 	if ( window.bodywings && window.bodywings.register ) {

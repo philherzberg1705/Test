@@ -110,6 +110,34 @@ html.bw-offcanvas-open {
 	}
 }
 
+/* ---------- Responsive-static Panels (z.B. Filter, §13) ---------- */
+.bw-offcanvas.is-static {
+	position: static;
+	inset: auto;
+	visibility: visible;
+	z-index: auto;
+}
+
+.bw-offcanvas.is-static .bw-offcanvas__backdrop {
+	display: none;
+}
+
+.bw-offcanvas.is-static .bw-offcanvas__panel {
+	position: static;
+	max-width: none;
+	width: 100%;
+	height: auto;
+	box-shadow: none;
+	border-radius: var(--bw-radius-lg);
+	transform: none;
+	padding: var(--bw-space-5);
+	overflow: visible;
+}
+
+.bw-offcanvas.is-static .bw-offcanvas__close {
+	display: none;
+}
+
 /* ---------- Suche ---------- */
 .bw-offcanvas__panel--search {
 	max-width: 640px;

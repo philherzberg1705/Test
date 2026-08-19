@@ -2,6 +2,10 @@
  * Produktkarte: Varianten-Bildwechsel (§8.1) rein clientseitig, kein
  * Reload, keine AJAX-Anfrage nötig — alle Variationsbilder sind bereits
  * serverseitig als data-Attribute in der Karte vorhanden.
+ *
+ * Event-Delegation auf document, damit auch Karten funktionieren, die
+ * nach einem Filter-AJAX-Refresh (Task 10) neu ins Grid eingefügt werden
+ * — kein manuelles "Reinit" nötig.
  */
 ( function () {
 	'use strict';
@@ -22,8 +26,12 @@
 		img.src = newSrc;
 	}
 
-	function onSwatchClick( event ) {
-		var button = event.currentTarget;
+	function onDocumentClick( event ) {
+		var button = event.target.closest( '.bw-swatch[data-bw-variant-image]' );
+		if ( ! button ) {
+			return;
+		}
+
 		var card = button.closest( '[data-bw-product-card]' );
 		if ( ! card ) {
 			return;
@@ -44,9 +52,7 @@
 	}
 
 	function initProductCards() {
-		document.querySelectorAll( '.bw-swatch' ).forEach( function ( button ) {
-			button.addEventListener( 'click', onSwatchClick );
-		} );
+		document.addEventListener( 'click', onDocumentClick );
 	}
 
 	if ( window.bodywings && window.bodywings.register ) {
