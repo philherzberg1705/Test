@@ -6,6 +6,12 @@
       "sourceType": "github",
       "skillPath": "plugins/frontend-design/skills/frontend-design/SKILL.md",
       "computedHash": "3e0be122a3db8206b6d0d6b07cca898b5c75fb9b7b2101abe143fb2851734d2e"
+    },
+    "frontend-ui": {
+      "source": "WomenDefiningAI/claude-code-skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-ui/SKILL.md",
+      "computedHash": "2630761edd834b2eb737674b4cfb97cc70d7b847d4f89a087bbb52e6303414f9"
     }
   }
 }
