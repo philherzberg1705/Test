@@ -7,6 +7,7 @@
 	"icon": "grid-view",
 	"description": "Grid mit Produktkategorien (Bild, Name, Anzahl Produkte) — verlinkt auf das jeweilige Kategorie-Archiv (benötigt WooCommerce).",
 	"textdomain": "bodywings",
+	"keywords": ["kategorien", "übersicht", "grid"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"heading": { "type": "string", "default": "" },

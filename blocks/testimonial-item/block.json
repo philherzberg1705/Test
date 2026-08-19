@@ -7,6 +7,7 @@
 	"icon": "format-quote",
 	"description": "Eine Kund:innen-Stimme innerhalb des Bewertungen-Sliders.",
 	"textdomain": "bodywings",
+	"keywords": ["bewertung", "zitat", "review"],
 	"parent": ["bw/testimonial-slider"],
 	"attributes": {
 		"quote": { "type": "string", "default": "" },

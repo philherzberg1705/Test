@@ -7,6 +7,7 @@
 	"icon": "button",
 	"description": "Schmales Call-to-Action-Band mit Überschrift, Text und einem Button.",
 	"textdomain": "bodywings",
+	"keywords": ["cta", "aufruf", "button"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"heading": { "type": "string", "default": "" },

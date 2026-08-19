@@ -7,6 +7,7 @@
 	"icon": "star-filled",
 	"description": "Ein einzelner Eintrag innerhalb der USP-Icons.",
 	"textdomain": "bodywings",
+	"keywords": ["icon", "vorteil"],
 	"parent": ["bw/icon-list"],
 	"attributes": {
 		"icon": { "type": "string", "default": "check" },

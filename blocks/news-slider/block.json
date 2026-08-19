@@ -7,6 +7,7 @@
 	"icon": "slides",
 	"description": "Horizontaler Slider mit Beiträgen (neueste, aus einer Kategorie oder manuell ausgewählt) — endet mit einer Karte zum News-Archiv.",
 	"textdomain": "bodywings",
+	"keywords": ["news", "beiträge", "blog"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"heading": { "type": "string", "default": "Neuigkeiten" },

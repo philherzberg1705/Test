@@ -7,6 +7,7 @@
 	"icon": "editor-help",
 	"description": "Häufig gestellte Fragen als Akkordeon — nativ per <details>/<summary>, funktioniert ohne JavaScript.",
 	"textdomain": "bodywings",
+	"keywords": ["fragen", "akkordeon", "hilfe"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"heading": { "type": "string", "default": "Häufige Fragen" },

@@ -7,6 +7,7 @@
 	"icon": "admin-users",
 	"description": "Ein Eintrag innerhalb des Team-Sliders.",
 	"textdomain": "bodywings",
+	"keywords": ["team", "mitarbeiter", "person"],
 	"parent": ["bw/team-slider"],
 	"attributes": {
 		"photoId": { "type": "number", "default": 0 },

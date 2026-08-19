@@ -7,6 +7,7 @@
 	"icon": "image-flip-horizontal",
 	"description": "Zwei Bilder mit einem verschiebbaren Regler vergleichen — z.B. für Vorher/Nachher-Ergebnisse.",
 	"textdomain": "bodywings",
+	"keywords": ["vorher", "nachher", "vergleich"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"heading": { "type": "string", "default": "" },

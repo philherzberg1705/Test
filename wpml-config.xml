@@ -1,0 +1,159 @@
+<wpml-config>
+	<!--
+		Übersetzungs-Konfiguration für WPML (§28: "Optionales Plugin
+		vorhanden → Integration aktivieren"). Diese Datei hat ohne WPML
+		keinerlei Wirkung — sie wird nur gelesen, wenn WPML aktiv ist und
+		das Theme neu registriert/das Cache geleert wird.
+
+		bw_job_application ist bewusst NICHT übersetzbar (personenbezogene
+		Bewerberdaten, §32 — es gibt nichts an einer Bewerbung, das eine
+		Übersetzung bräuchte).
+	-->
+	<custom-types>
+		<custom-type translate="1">bw_job</custom-type>
+		<custom-type translate="0">bw_job_application</custom-type>
+	</custom-types>
+
+	<taxonomies>
+		<taxonomy translate="1">bw_job_type</taxonomy>
+		<taxonomy translate="1">bw_job_location</taxonomy>
+	</taxonomies>
+
+	<custom-fields>
+		<!-- Freitext-Listen (§12): pro Sprache eigene Inhalte. -->
+		<custom-field action="translate">_bw_job_tasks</custom-field>
+		<custom-field action="translate">_bw_job_requirements</custom-field>
+		<custom-field action="translate">_bw_job_benefits</custom-field>
+		<custom-field action="translate">_bw_job_contact_name</custom-field>
+		<!-- Strukturierte/technische Werte: identisch in jeder Sprache. -->
+		<custom-field action="copy">_bw_job_salary_min</custom-field>
+		<custom-field action="copy">_bw_job_salary_max</custom-field>
+		<custom-field action="copy">_bw_job_salary_unit</custom-field>
+		<custom-field action="copy">_bw_job_is_remote</custom-field>
+		<custom-field action="copy">_bw_job_start_date</custom-field>
+		<custom-field action="copy">_bw_job_start_asap</custom-field>
+		<custom-field action="copy">_bw_job_application_deadline</custom-field>
+		<custom-field action="copy">_bw_job_contact_email</custom-field>
+	</custom-fields>
+
+	<!--
+		Gutenberg-Blöcke (siehe /blocks/*): nur textliche Inhalte sind
+		aufgeführt. Bild-IDs/-URLs, Farb-/Layout-/Quelle-Attribute (bgColor,
+		columns, source, categoryId, categoryIds, postIds, count, rating,
+		startPosition, imagePosition …) sind bewusst NICHT gelistet — WPML
+		übersetzt nur explizit aufgeführte Felder, alles andere wird beim
+		Erzeugen der Übersetzung unverändert übernommen.
+	-->
+	<gutenberg-blocks>
+		<gutenberg-block type="bw/hero-big">
+			<fields>
+				<field type="line">heading</field>
+				<field type="area">subheading</field>
+				<field type="line">buttonText</field>
+				<field type="line">buttonText2</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/hero-small">
+			<fields>
+				<field type="line">heading</field>
+				<field type="area">subheading</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/stoerer">
+			<fields>
+				<field type="area">text</field>
+				<field type="line">linkText</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/image-text">
+			<fields>
+				<field type="line">heading</field>
+				<field type="area">text</field>
+				<field type="line">buttonText</field>
+				<field type="line">imageAlt</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/icon-list">
+			<fields>
+				<field type="line">heading</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/icon-list-item">
+			<fields>
+				<field type="line">title</field>
+				<field type="area">text</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/product-slider">
+			<fields>
+				<field type="line">heading</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/category-grid">
+			<fields>
+				<field type="line">heading</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/team-slider">
+			<fields>
+				<field type="line">heading</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/team-member">
+			<fields>
+				<field type="line">name</field>
+				<field type="line">role</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/faq">
+			<fields>
+				<field type="line">heading</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/faq-item">
+			<fields>
+				<field type="line">question</field>
+				<field type="area">answer</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/testimonial-slider">
+			<fields>
+				<field type="line">heading</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/testimonial-item">
+			<fields>
+				<field type="area">quote</field>
+				<field type="line">name</field>
+				<field type="line">role</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/newsletter-cta">
+			<fields>
+				<field type="line">heading</field>
+				<field type="area">intro</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/cta-banner">
+			<fields>
+				<field type="line">heading</field>
+				<field type="area">text</field>
+				<field type="line">buttonText</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/news-slider">
+			<fields>
+				<field type="line">heading</field>
+			</fields>
+		</gutenberg-block>
+		<gutenberg-block type="bw/before-after">
+			<fields>
+				<field type="line">heading</field>
+				<field type="line">beforeLabel</field>
+				<field type="line">afterLabel</field>
+				<field type="line">beforeImageAlt</field>
+				<field type="line">afterImageAlt</field>
+			</fields>
+		</gutenberg-block>
+	</gutenberg-blocks>
+</wpml-config>

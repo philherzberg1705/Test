@@ -7,6 +7,7 @@
 	"icon": "cover-image",
 	"description": "Kompakter Seiten-Header mit Headline, Subline und Hintergrundfarbe/-bild — für Unterseiten statt der großen Startseiten-Hero.",
 	"textdomain": "bodywings",
+	"keywords": ["header", "seitenkopf", "banner"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"heading": { "type": "string", "default": "" },

@@ -7,6 +7,7 @@
 	"icon": "megaphone",
 	"description": "Schmales, auffälliges Hinweisband — z.B. für Aktionen oder Versandhinweise.",
 	"textdomain": "bodywings",
+	"keywords": ["banner", "hinweis", "aktion"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"text": { "type": "string", "default": "" },

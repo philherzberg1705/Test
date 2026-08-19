@@ -7,6 +7,7 @@
 	"icon": "slides",
 	"description": "Horizontaler Produkt-Slider — nach Kategorie, Neuheiten, Bestsellern oder Angeboten (benötigt WooCommerce).",
 	"textdomain": "bodywings",
+	"keywords": ["produkte", "karussell", "carousel"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"heading": { "type": "string", "default": "" },

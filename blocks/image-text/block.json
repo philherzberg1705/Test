@@ -7,6 +7,7 @@
 	"icon": "align-pull-left",
 	"description": "Bild neben Überschrift, Text und optionalem Button — z.B. für „Über uns“.",
 	"textdomain": "bodywings",
+	"keywords": ["über uns", "about", "zweispaltig"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"heading": { "type": "string", "default": "" },

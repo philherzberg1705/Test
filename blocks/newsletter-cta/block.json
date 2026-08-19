@@ -7,6 +7,7 @@
 	"icon": "email",
 	"description": "Newsletter-Formular als Content-Element — dasselbe Anmeldeformular wie im Footer (§19).",
 	"textdomain": "bodywings",
+	"keywords": ["newsletter", "anmeldung", "email"],
 	"supports": { "align": ["wide", "full"], "anchor": true },
 	"attributes": {
 		"heading": { "type": "string", "default": "Newsletter" },
