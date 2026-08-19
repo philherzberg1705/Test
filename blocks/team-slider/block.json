@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/team-slider",
+	"title": "Team-Slider",
+	"category": "bodywings",
+	"icon": "groups",
+	"description": "Horizontaler Slider mit Team-Mitgliedern (Foto, Name, Rolle).",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-team-slider-edit",
+	"viewScript": "bodywings-block-slider",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

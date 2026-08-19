@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/image-text",
+	"title": "Bild & Text",
+	"category": "bodywings",
+	"icon": "align-pull-left",
+	"description": "Bild neben Überschrift, Text und optionalem Button — z.B. für „Über uns“.",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"asH1": { "type": "boolean", "default": false },
+		"text": { "type": "string", "default": "" },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" },
+		"imageAlt": { "type": "string", "default": "" },
+		"imagePosition": { "type": "string", "default": "left" },
+		"buttonText": { "type": "string", "default": "" },
+		"buttonUrl": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-image-text-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

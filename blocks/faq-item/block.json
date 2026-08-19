@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/faq-item",
+	"title": "FAQ-Eintrag",
+	"category": "bodywings",
+	"icon": "editor-help",
+	"description": "Eine Frage/Antwort innerhalb der FAQ.",
+	"textdomain": "bodywings",
+	"parent": ["bw/faq"],
+	"attributes": {
+		"question": { "type": "string", "default": "" },
+		"answer": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-faq-item-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

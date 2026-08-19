@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/product-slider",
+	"title": "Produkt-Slider",
+	"category": "bodywings",
+	"icon": "slides",
+	"description": "Horizontaler Produkt-Slider — nach Kategorie, Neuheiten, Bestsellern oder Angeboten (benötigt WooCommerce).",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"source": { "type": "string", "default": "recent" },
+		"categoryId": { "type": "number", "default": 0 },
+		"count": { "type": "number", "default": 8 },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-product-slider-edit",
+	"viewScript": "bodywings-block-slider",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

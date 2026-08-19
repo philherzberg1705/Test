@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/testimonial-slider",
+	"title": "Bewertungen-Slider",
+	"category": "bodywings",
+	"icon": "format-quote",
+	"description": "Horizontaler Slider mit Kund:innen-Stimmen/Bewertungen.",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-testimonial-slider-edit",
+	"viewScript": "bodywings-block-slider",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

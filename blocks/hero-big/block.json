@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/hero-big",
+	"title": "Hero (groß)",
+	"category": "bodywings",
+	"icon": "cover-image",
+	"description": "Großer Hero-Bereich mit Headline, Subline, Hintergrundbild oder -farbe und bis zu zwei Buttons.",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"asH1": { "type": "boolean", "default": false },
+		"subheading": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "" },
+		"backgroundImageId": { "type": "number", "default": 0 },
+		"backgroundImageUrl": { "type": "string", "default": "" },
+		"buttonText": { "type": "string", "default": "" },
+		"buttonUrl": { "type": "string", "default": "" },
+		"buttonText2": { "type": "string", "default": "" },
+		"buttonUrl2": { "type": "string", "default": "" },
+		"contentAlign": { "type": "string", "default": "left" }
+	},
+	"editorScript": "bw-block-hero-big-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

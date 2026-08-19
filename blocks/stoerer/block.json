@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/stoerer",
+	"title": "Störer",
+	"category": "bodywings",
+	"icon": "megaphone",
+	"description": "Schmales, auffälliges Hinweisband — z.B. für Aktionen oder Versandhinweise.",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"text": { "type": "string", "default": "" },
+		"icon": { "type": "string", "default": "star" },
+		"bgColor": { "type": "string", "default": "terrakotta" },
+		"linkText": { "type": "string", "default": "" },
+		"linkUrl": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-stoerer-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

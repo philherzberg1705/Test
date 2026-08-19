@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/category-grid",
+	"title": "Kategorien-Liste",
+	"category": "bodywings",
+	"icon": "grid-view",
+	"description": "Grid mit Produktkategorien (Bild, Name, Anzahl Produkte) — verlinkt auf das jeweilige Kategorie-Archiv (benötigt WooCommerce).",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"categoryIds": { "type": "array", "default": [] },
+		"count": { "type": "number", "default": 6 },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-category-grid-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/testimonial-item",
+	"title": "Bewertung",
+	"category": "bodywings",
+	"icon": "format-quote",
+	"description": "Eine Kund:innen-Stimme innerhalb des Bewertungen-Sliders.",
+	"textdomain": "bodywings",
+	"parent": ["bw/testimonial-slider"],
+	"attributes": {
+		"quote": { "type": "string", "default": "" },
+		"name": { "type": "string", "default": "" },
+		"role": { "type": "string", "default": "" },
+		"avatarId": { "type": "number", "default": 0 },
+		"avatarUrl": { "type": "string", "default": "" },
+		"rating": { "type": "number", "default": 5 }
+	},
+	"editorScript": "bw-block-testimonial-item-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

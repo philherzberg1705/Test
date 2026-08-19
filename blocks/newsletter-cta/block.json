@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/newsletter-cta",
+	"title": "Newsletter-Anmeldung",
+	"category": "bodywings",
+	"icon": "email",
+	"description": "Newsletter-Formular als Content-Element — dasselbe Anmeldeformular wie im Footer (§19).",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "Newsletter" },
+		"intro": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "beige" }
+	},
+	"editorScript": "bw-block-newsletter-cta-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

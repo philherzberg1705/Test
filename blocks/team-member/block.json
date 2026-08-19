@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/team-member",
+	"title": "Team-Mitglied",
+	"category": "bodywings",
+	"icon": "admin-users",
+	"description": "Ein Eintrag innerhalb des Team-Sliders.",
+	"textdomain": "bodywings",
+	"parent": ["bw/team-slider"],
+	"attributes": {
+		"photoId": { "type": "number", "default": 0 },
+		"photoUrl": { "type": "string", "default": "" },
+		"name": { "type": "string", "default": "" },
+		"role": { "type": "string", "default": "" },
+		"linkUrl": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-team-member-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

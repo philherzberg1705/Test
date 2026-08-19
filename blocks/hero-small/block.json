@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/hero-small",
+	"title": "Hero (klein)",
+	"category": "bodywings",
+	"icon": "cover-image",
+	"description": "Kompakter Seiten-Header mit Headline, Subline und Hintergrundfarbe/-bild — für Unterseiten statt der großen Startseiten-Hero.",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"asH1": { "type": "boolean", "default": false },
+		"subheading": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "beige" },
+		"backgroundImageUrl": { "type": "string", "default": "" },
+		"backgroundImageId": { "type": "number", "default": 0 }
+	},
+	"editorScript": "bw-block-hero-small-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

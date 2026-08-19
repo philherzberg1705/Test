@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/icon-list",
+	"title": "USP-Icons",
+	"category": "bodywings",
+	"icon": "list-view",
+	"description": "Icon + Titel + Text nebeneinander, z.B. für Versandkostenfrei/Rückgabe/Support-Hinweise.",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"columns": { "type": "number", "default": 3 },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-icon-list-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

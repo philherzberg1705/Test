@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/icon-list-item",
+	"title": "USP-Icon-Eintrag",
+	"category": "bodywings",
+	"icon": "star-filled",
+	"description": "Ein einzelner Eintrag innerhalb der USP-Icons.",
+	"textdomain": "bodywings",
+	"parent": ["bw/icon-list"],
+	"attributes": {
+		"icon": { "type": "string", "default": "check" },
+		"title": { "type": "string", "default": "" },
+		"text": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-icon-list-item-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

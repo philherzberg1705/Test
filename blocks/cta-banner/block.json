@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/cta-banner",
+	"title": "CTA-Banner",
+	"category": "bodywings",
+	"icon": "button",
+	"description": "Schmales Call-to-Action-Band mit Überschrift, Text und einem Button.",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"text": { "type": "string", "default": "" },
+		"buttonText": { "type": "string", "default": "" },
+		"buttonUrl": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "green" }
+	},
+	"editorScript": "bw-block-cta-banner-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}
