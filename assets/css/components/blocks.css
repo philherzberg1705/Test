@@ -739,3 +739,126 @@
 .bw-news-slider__link--all .bw-news-slider__title {
 	margin: 0;
 }
+
+/* ---------- Vorher/Nachher-Bild ----------
+   Bedienung läuft über ein natives <input type="range"> (volle Fläche,
+   unsichtbar via opacity:0 statt visibility/display — bleibt dadurch
+   fokussier- und bedienbar), das lediglich --bw-ba-position setzt.
+   Clip-path statt width fürs Vorher-Bild: reine Compositor-Eigenschaft,
+   kein Layout-Reflow bei jedem Ziehen-Event (§26). */
+.bw-before-after__heading {
+	font-size: var(--bw-text-h2);
+	margin-bottom: var(--bw-space-5);
+	text-align: center;
+}
+
+.bw-before-after__frame {
+	position: relative;
+	max-width: 900px;
+	margin-inline: auto;
+}
+
+.bw-before-after__stage {
+	position: relative;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	border-radius: var(--bw-radius-lg);
+	background: var(--bw-color-surface);
+}
+
+.bw-before-after__img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.bw-before-after__before-wrap {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	clip-path: inset(0 calc(100% - var(--bw-ba-position, 50%)) 0 0);
+}
+
+.bw-before-after__label {
+	position: absolute;
+	top: var(--bw-space-3);
+	padding: var(--bw-space-1) var(--bw-space-3);
+	border-radius: var(--bw-radius-full);
+	background: rgb(26 26 26 / 0.55);
+	color: var(--bw-color-beige);
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-label);
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	pointer-events: none;
+}
+
+.bw-before-after__label--before {
+	left: var(--bw-space-3);
+}
+
+.bw-before-after__label--after {
+	right: var(--bw-space-3);
+}
+
+.bw-before-after__handle {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--bw-ba-position, 50%);
+	width: 40px;
+	transform: translateX(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	pointer-events: none;
+}
+
+.bw-before-after__handle::before {
+	content: '';
+	position: absolute;
+	inset-block: 0;
+	left: 50%;
+	width: 2px;
+	background: var(--bw-color-surface);
+	transform: translateX(-50%);
+}
+
+.bw-before-after__handle .bw-icon {
+	position: relative;
+	width: 14px;
+	height: 14px;
+	padding: var(--bw-space-2);
+	border-radius: var(--bw-radius-full);
+	background: var(--bw-color-surface);
+	box-shadow: var(--bw-shadow-sm);
+}
+
+.bw-before-after__handle .bw-icon:first-child {
+	margin-right: -4px;
+}
+
+.bw-before-after__handle .bw-icon:last-child {
+	margin-left: -4px;
+}
+
+.bw-before-after__range {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: ew-resize;
+	appearance: none;
+	background: transparent;
+}
+
+.bw-before-after__frame:has(.bw-before-after__range:focus-visible) .bw-before-after__handle {
+	outline: 2px solid var(--bw-color-focus-ring);
+	outline-offset: 2px;
+	border-radius: var(--bw-radius-sm);
+}

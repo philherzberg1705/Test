@@ -63,6 +63,14 @@ function bodywings_register_shared_block_assets(): void {
 		true
 	);
 
+	wp_register_script(
+		'bodywings-block-before-after',
+		BODYWINGS_URI . '/assets/js/block-before-after.js',
+		array(),
+		bodywings_asset_version( $js_dir . '/block-before-after.js' ),
+		true
+	);
+
 	wp_register_style(
 		'bodywings-blocks-style',
 		BODYWINGS_URI . '/assets/css/components/blocks.css',

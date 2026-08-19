@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/before-after",
+	"title": "Vorher/Nachher-Bild",
+	"category": "bodywings",
+	"icon": "image-flip-horizontal",
+	"description": "Zwei Bilder mit einem verschiebbaren Regler vergleichen — z.B. für Vorher/Nachher-Ergebnisse.",
+	"textdomain": "bodywings",
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"beforeImageId": { "type": "number", "default": 0 },
+		"beforeImageUrl": { "type": "string", "default": "" },
+		"beforeImageAlt": { "type": "string", "default": "" },
+		"beforeLabel": { "type": "string", "default": "Vorher" },
+		"afterImageId": { "type": "number", "default": 0 },
+		"afterImageUrl": { "type": "string", "default": "" },
+		"afterImageAlt": { "type": "string", "default": "" },
+		"afterLabel": { "type": "string", "default": "Nachher" },
+		"startPosition": { "type": "number", "default": 50 },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-before-after-edit",
+	"viewScript": "bodywings-block-before-after",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}
