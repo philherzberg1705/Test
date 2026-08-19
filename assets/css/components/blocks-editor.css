@@ -1,0 +1,27 @@
+/**
+ * Editor-only-Overrides für die BODYWINGS-Blöcke — lädt zusätzlich zu
+ * blocks.css (siehe inc/components/blocks.php), nur im Block-Editor aktiv.
+ * Frontend-Layout/-Abstände kommen bereits aus blocks.css; hier nur, was
+ * sich innerhalb des Editor-Canvas anders verhält.
+ */
+
+.editor-styles-wrapper .bw-block {
+	position: relative;
+}
+
+/* RichText-Platzhalter sollen wie normaler Fließtext aussehen, nicht wie
+   die (grauere) Gutenberg-Standard-Placeholder-Farbe. */
+.editor-styles-wrapper .bw-block [data-rich-text-placeholder] {
+	opacity: 0.55;
+}
+
+/* InnerBlocks-Kinder (Icon-Liste/Team/FAQ/Testimonials) brauchen im Editor
+   sichtbare Grenzen, auch ohne Hover — leichter zu erfassen als leere
+   Flächen. */
+.editor-styles-wrapper .bw-icon-list__item,
+.editor-styles-wrapper .bw-faq__item--editor,
+.editor-styles-wrapper .bw-team-slider__item,
+.editor-styles-wrapper .bw-testimonial-slider__item {
+	outline: 1px dashed var(--bw-color-border, #d8cdb4);
+	outline-offset: 4px;
+}

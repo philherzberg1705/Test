@@ -17,5 +17,12 @@ function bodywings_is_product_grid_context(): bool {
 		return false;
 	}
 
-	return is_shop() || is_product_taxonomy() || is_product() || is_search() || is_page_template( 'template-wishlist.php' );
+	if ( is_shop() || is_product_taxonomy() || is_product() || is_search() || is_page_template( 'template-wishlist.php' ) ) {
+		return true;
+	}
+
+	// Produktkarten kommen auch außerhalb der klassischen Shop-Kontexte vor,
+	// sobald eine Seite den Produkt-Slider-Block enthält (§5/§26: nur dann
+	// laden, wenn der Block tatsächlich auf der Seite vorkommt).
+	return is_singular() && has_block( 'bw/product-slider' );
 }

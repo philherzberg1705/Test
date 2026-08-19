@@ -23,6 +23,11 @@ function bodywings_icon( string $name ): string {
 		'user'   => '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.6-4 4.8-6 8-6s6.4 2 8 6"/>',
 		'bag'    => '<path d="M6 8h12l-1 12.5a1 1 0 0 1-1 .9H8a1 1 0 0 1-1-.9L6 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
 		'truck'  => '<path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/>',
+		'chevron-left'  => '<path d="M15 5l-7 7 7 7"/>',
+		'chevron-right' => '<path d="M9 5l7 7-7 7"/>',
+		'chevron-down'  => '<path d="M5 9l7 7 7-7"/>',
+		'star'   => '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2 5.9-.8Z"/>',
+		'check'  => '<path d="M4 12.5l5 5L20 6"/>',
 	);
 
 	if ( ! isset( $icons[ $name ] ) ) {
