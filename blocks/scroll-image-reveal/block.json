@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/scroll-image-reveal",
+	"title": "Scroll-Bild-Reveal",
+	"category": "bodywings",
+	"icon": "images-alt2",
+	"description": "Bild wächst beim Scrollen bis auf volle Bildschirmbreite, danach blenden Text und eine nach oben rutschende Headline animiert ein.",
+	"textdomain": "bodywings",
+	"keywords": ["scroll", "bild", "reveal"],
+	"supports": { "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "" },
+		"asH1": { "type": "boolean", "default": false },
+		"text": { "type": "string", "default": "" },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "" },
+		"imageAlt": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-scroll-image-reveal-edit",
+	"viewScript": "bodywings-block-scroll-reveal",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

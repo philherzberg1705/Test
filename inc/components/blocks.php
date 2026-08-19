@@ -101,6 +101,14 @@ function bodywings_register_shared_block_assets(): void {
 		true
 	);
 
+	wp_register_script(
+		'bodywings-block-scroll-reveal',
+		BODYWINGS_URI . '/assets/js/block-scroll-reveal.js',
+		array( 'bodywings-gsap-scrolltrigger' ),
+		bodywings_asset_version( $js_dir . '/block-scroll-reveal.js' ),
+		true
+	);
+
 	wp_register_style(
 		'bodywings-blocks-style',
 		BODYWINGS_URI . '/assets/css/components/blocks.css',

@@ -1066,3 +1066,109 @@
 		transition: none;
 	}
 }
+
+/* ---------- Scroll-Bild-Reveal ----------
+   Statischer Grundzustand (kein JS / prefers-reduced-motion): Bild in
+   normaler Höhe mit Headline drauf, Text direkt darunter — vollständig
+   nutzbar ohne jede Animation (§25). .is-enhanced (von
+   assets/js/block-scroll-reveal.js gesetzt, nur wenn GSAP+ScrollTrigger
+   verfügbar sind UND keine reduzierte Bewegung gewünscht ist) baut daraus
+   erst die gepinnte Scroll-Sequenz. */
+.bw-scroll-reveal__scroller {
+	position: relative;
+}
+
+.bw-scroll-reveal__stage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--bw-space-6);
+	padding-block: var(--bw-space-8);
+}
+
+.bw-scroll-reveal__media {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	border-radius: var(--bw-radius-lg);
+	transform-origin: center center;
+}
+
+.bw-scroll-reveal__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.bw-scroll-reveal__scrim {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgb(26 26 26 / 0.65), transparent 55%);
+	pointer-events: none;
+}
+
+.bw-scroll-reveal__heading {
+	position: absolute;
+	left: var(--bw-space-6);
+	right: var(--bw-space-6);
+	bottom: var(--bw-space-6);
+	margin: 0;
+	color: var(--bw-color-beige);
+	font-size: clamp(1.75rem, 1.4rem + 1.8vw, 3rem);
+	line-height: var(--bw-leading-tight);
+}
+
+.bw-scroll-reveal__text {
+	max-width: 65ch;
+	margin-inline: auto;
+	text-align: center;
+}
+
+/* ---------- Erweiterter (gepinnter) Zustand ---------- */
+@media (prefers-reduced-motion: no-preference) {
+	.bw-scroll-reveal__scroller.is-enhanced {
+		height: 220vh;
+	}
+
+	.bw-scroll-reveal__scroller.is-enhanced .bw-scroll-reveal__stage {
+		position: relative;
+		height: 100vh;
+		padding-block: 0;
+		gap: 0;
+		overflow: hidden;
+	}
+
+	.bw-scroll-reveal__scroller.is-enhanced .bw-scroll-reveal__media {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	/* Von GSAP gescrubbt (scale/clip/y) — will-change als Hinweis an den
+	   Compositor, hier häufige Transform-Updates zu erwarten (§26). */
+	.bw-scroll-reveal__scroller.is-enhanced .bw-scroll-reveal__media,
+	.bw-scroll-reveal__scroller.is-enhanced .bw-scroll-reveal__heading,
+	.bw-scroll-reveal__scroller.is-enhanced .bw-scroll-reveal__text {
+		will-change: transform, opacity;
+	}
+
+	.bw-scroll-reveal__scroller.is-enhanced .bw-scroll-reveal__media .bw-scroll-reveal__heading {
+		bottom: 18%;
+	}
+
+	.bw-scroll-reveal__scroller.is-enhanced .bw-scroll-reveal__stage > .bw-block__inner {
+		position: absolute;
+		inset-inline: 0;
+		bottom: 8%;
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.bw-scroll-reveal__scroller.is-enhanced .bw-scroll-reveal__text {
+		color: var(--bw-color-beige);
+		pointer-events: auto;
+	}
+}
