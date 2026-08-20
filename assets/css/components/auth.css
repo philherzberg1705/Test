@@ -97,3 +97,54 @@
 	background: color-mix(in oklab, var(--bw-color-green) 12%, var(--bw-color-page-bg));
 	color: var(--bw-color-green);
 }
+
+/* Notices auch außerhalb von .bw-auth (z.B. Geschäftsdaten-Formular unten) —
+   WooCommerce liefert selbst keine Styles mehr (woocommerce_enqueue_styles
+   ist auf __return_empty_array gesetzt), daher hier ungescoped ergänzt. */
+.woocommerce-message,
+.woocommerce-error {
+	padding: var(--bw-space-3) var(--bw-space-4);
+	border-radius: var(--bw-radius-sm);
+	margin-bottom: var(--bw-space-5);
+	list-style: none;
+	font-size: var(--bw-text-small);
+}
+
+.woocommerce-message {
+	background: color-mix(in oklab, var(--bw-color-green) 12%, var(--bw-color-page-bg));
+	color: var(--bw-color-green);
+}
+
+.woocommerce-error {
+	background: color-mix(in oklab, var(--bw-color-danger) 12%, var(--bw-color-page-bg));
+	color: var(--bw-color-danger);
+}
+
+/* ---------- Geschäftsdaten-Formular (Konto → Geschäftsdaten) ---------- */
+.bw-business-form {
+	max-width: 560px;
+}
+
+.bw-business-form__field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-1);
+	margin-bottom: var(--bw-space-4);
+}
+
+.bw-business-form__row {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: var(--bw-space-4);
+}
+
+.bw-business-form__hint {
+	font-size: var(--bw-text-small);
+	margin-bottom: var(--bw-space-5);
+}
+
+@media (max-width: 599px) {
+	.bw-business-form__row {
+		grid-template-columns: 1fr;
+	}
+}

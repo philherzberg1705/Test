@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/business-search",
+	"title": "Geschäftssuche",
+	"category": "bodywings",
+	"icon": "location-alt",
+	"description": "Karte mit Suchfunktion über alle Geschäftspartner:innen (Rolle im Backend unter BODYWINGS → Geschäftssuche konfigurierbar).",
+	"textdomain": "bodywings",
+	"keywords": ["geschäftssuche", "karte", "map", "standorte", "filialsuche"],
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "Geschäftssuche" },
+		"text": { "type": "string", "default": "" },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-business-search-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

@@ -1,0 +1,117 @@
+/**
+ * Geschäftssuche-Block (§13-Analogie: Suche + Liste + Karte). Leaflet
+ * liefert eigene Basis-Styles (leaflet.css, siehe inc/core/enqueue.php) —
+ * hier nur Layout und die Design-System-Anpassungen (Radius, Farben,
+ * Typografie) für Popups/Markendetails (§4).
+ */
+
+.bw-business-search__text {
+	color: var(--bw-color-muted);
+	margin: 0 0 var(--bw-space-6);
+}
+
+[data-bw-bg] .bw-business-search__text {
+	color: inherit;
+	opacity: 0.85;
+}
+
+.bw-business-search__app {
+	display: grid;
+	grid-template-columns: 340px 1fr;
+	gap: var(--bw-space-5);
+	align-items: start;
+}
+
+.bw-business-search__panel {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-3);
+}
+
+.bw-business-search__input {
+	flex-shrink: 0;
+}
+
+.bw-business-search__list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bw-space-2);
+	max-height: 480px;
+	overflow-y: auto;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.bw-business-search__item {
+	border: 1px solid var(--bw-color-border);
+	border-radius: var(--bw-radius-sm);
+	background: var(--bw-color-surface);
+	transition: border-color var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+.bw-business-search__item:has(.bw-business-search__item-trigger:hover),
+.bw-business-search__item:has(.bw-business-search__item-trigger:focus-visible) {
+	border-color: var(--bw-color-green);
+}
+
+.bw-business-search__item-trigger {
+	display: block;
+	width: 100%;
+	padding: var(--bw-space-3) var(--bw-space-4) var(--bw-space-1);
+	background: none;
+	border: none;
+	text-align: left;
+	font-family: var(--bw-font-body);
+	cursor: pointer;
+}
+
+.bw-business-search__item-name {
+	display: block;
+	margin: 0 0 var(--bw-space-1);
+	font-family: var(--bw-font-heading);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	font-size: var(--bw-text-label);
+	color: var(--bw-color-heading-text);
+}
+
+.bw-business-search__item-address {
+	display: block;
+	font-size: var(--bw-text-small);
+	color: var(--bw-color-muted);
+}
+
+.bw-business-search__item-contact {
+	display: flex;
+	gap: var(--bw-space-3);
+	margin: 0;
+	padding: var(--bw-space-1) var(--bw-space-4) var(--bw-space-3);
+	font-size: var(--bw-text-small);
+}
+
+.bw-business-search__map {
+	height: 480px;
+	border-radius: var(--bw-radius-md);
+	overflow: hidden;
+}
+
+.leaflet-popup-content-wrapper {
+	border-radius: var(--bw-radius-sm);
+	font-family: var(--bw-font-body);
+}
+
+.leaflet-popup-content a {
+	color: var(--bw-color-green);
+}
+
+@media (max-width: 959px) {
+	.bw-business-search__app {
+		grid-template-columns: 1fr;
+	}
+
+	.bw-business-search__map {
+		height: 320px;
+		order: -1;
+	}
+}

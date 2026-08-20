@@ -77,6 +77,10 @@ $bodywings_modules = array(
 	// Structured Data, Bewerbungs-Handling) von vergleichbarem Umfang wie
 	// inc/woocommerce, nicht bloß eine wiederverwendbare UI-Komponente.
 	'inc/jobs',
+	// Ebenfalls ein eigenständiges Feature (Rollen-Einstellung, User-Profil-
+	// Meta, WooCommerce-Konto-Endpoint, Content-Block) statt einer bloßen
+	// UI-Komponente in inc/components.
+	'inc/business-search',
 );
 
 foreach ( $bodywings_modules as $bodywings_module ) {

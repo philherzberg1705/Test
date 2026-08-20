@@ -210,6 +210,38 @@ function bodywings_enqueue_assets(): void {
 		);
 	}
 
+	if ( is_singular() && has_block( 'bw/business-search' ) ) {
+		wp_enqueue_style(
+			'bodywings-leaflet',
+			BODYWINGS_URI . '/assets/js/vendor/leaflet/leaflet.css',
+			array(),
+			'1.9.4'
+		);
+
+		wp_enqueue_style(
+			'bodywings-business-search',
+			BODYWINGS_URI . '/assets/css/components/business-search.css',
+			array( 'bodywings-base', 'bodywings-leaflet' ),
+			bodywings_asset_version( $css_dir . '/components/business-search.css' )
+		);
+
+		wp_enqueue_script(
+			'bodywings-leaflet',
+			BODYWINGS_URI . '/assets/js/vendor/leaflet/leaflet.js',
+			array(),
+			'1.9.4',
+			array( 'strategy' => 'defer', 'in_footer' => true )
+		);
+
+		wp_enqueue_script(
+			'bodywings-block-business-search',
+			BODYWINGS_URI . '/assets/js/block-business-search.js',
+			array( 'bodywings-leaflet' ),
+			bodywings_asset_version( $js_dir . '/block-business-search.js' ),
+			array( 'strategy' => 'defer', 'in_footer' => true )
+		);
+	}
+
 	if ( is_singular( 'bw_job' ) || is_post_type_archive( 'bw_job' ) ) {
 		wp_enqueue_style(
 			'bodywings-jobs',
