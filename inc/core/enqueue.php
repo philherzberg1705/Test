@@ -201,6 +201,15 @@ function bodywings_enqueue_assets(): void {
 		) );
 	}
 
+	if ( is_404() ) {
+		wp_enqueue_style(
+			'bodywings-404',
+			BODYWINGS_URI . '/assets/css/components/error-404.css',
+			array( 'bodywings-base' ),
+			bodywings_asset_version( $css_dir . '/components/error-404.css' )
+		);
+	}
+
 	if ( is_singular( 'bw_job' ) || is_post_type_archive( 'bw_job' ) ) {
 		wp_enqueue_style(
 			'bodywings-jobs',

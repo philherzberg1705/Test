@@ -1,0 +1,154 @@
+/**
+ * Contact Form 7 — Restyling (siehe inc/integrations/contact-form-7.php).
+ * CF7 gibt sein eigenes Markup/eigene Klassen aus (.wpcf7-form-control,
+ * .wpcf7-response-output, …) und übernimmt Validierung/AJAX/Absenden
+ * selbst (§31) — hier ausschließlich Optik, damit jedes CF7-Formular auf
+ * der Website wie die übrigen Formulare (.bw-input/.bw-btn) aussieht,
+ * unabhängig davon, ob es über den Kontakt-Block oder klassisch per
+ * Shortcode in Content eingebunden ist.
+ *
+ * Labels brauchen keine eigene Regel: Der globale label-Selektor in
+ * base.css (Special Gothic Condensed One, Uppercase) greift bereits
+ * automatisch, exakt wie bei allen anderen Formularen im Theme.
+ */
+
+.wpcf7-form p {
+	margin: 0 0 var(--bw-space-4);
+}
+
+.wpcf7-form-control-wrap {
+	display: block;
+}
+
+input.wpcf7-form-control,
+textarea.wpcf7-form-control,
+select.wpcf7-form-control {
+	width: 100%;
+	padding: var(--bw-space-3) var(--bw-space-4);
+	border: 1px solid var(--bw-color-border);
+	border-radius: var(--bw-radius-sm);
+	background: var(--bw-color-surface);
+	color: var(--bw-color-page-text);
+	font-family: var(--bw-font-body);
+	font-size: var(--bw-text-input);
+	transition: border-color var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+textarea.wpcf7-form-control {
+	min-height: 8rem;
+	resize: vertical;
+}
+
+input.wpcf7-form-control:focus-visible,
+textarea.wpcf7-form-control:focus-visible,
+select.wpcf7-form-control:focus-visible {
+	border-color: var(--bw-color-focus-ring);
+}
+
+input.wpcf7-form-control.wpcf7-not-valid,
+textarea.wpcf7-form-control.wpcf7-not-valid {
+	border-color: var(--bw-color-danger);
+}
+
+/* Checkbox-/Radio-Listen (z.B. Einwilligungen): kompakte Reihen statt
+ * CF7s Standard-Blockliste, konsistent mit .bw-newsletter-form__consent. */
+.wpcf7-list-item {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--bw-space-2);
+	margin: 0 0 var(--bw-space-2);
+}
+
+.wpcf7-list-item input {
+	margin-top: 3px;
+	flex-shrink: 0;
+	accent-color: var(--bw-color-green);
+}
+
+/* ---------- Absenden-Button ---------- */
+input.wpcf7-form-control.wpcf7-submit {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--bw-space-2);
+	width: auto;
+	padding: var(--bw-space-3) var(--bw-space-5);
+	border: none;
+	border-radius: var(--bw-radius-sm);
+	background: var(--bw-color-green);
+	color: var(--bw-on-green);
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-button);
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: background-color var(--bw-duration-fast) var(--bw-ease-standard),
+		transform var(--bw-duration-fast) var(--bw-ease-standard);
+}
+
+input.wpcf7-form-control.wpcf7-submit:hover {
+	background: color-mix(in oklab, var(--bw-color-green) 85%, black);
+}
+
+input.wpcf7-form-control.wpcf7-submit:active {
+	transform: scale(0.98);
+}
+
+/* CF7s Standard-Spinner ist ein Grafik-Icon — durch einen eigenen,
+ * tokenbasierten Kreis-Loader ersetzt (§20 Loading States, Design-System-
+ * konform). CF7 steuert weiterhin nur visibility per JS, keine eigene
+ * Logik nötig. */
+.wpcf7-spinner {
+	width: 1.1em;
+	height: 1.1em;
+	margin: 0 0 0 var(--bw-space-2);
+	background: none;
+	border: 2px solid color-mix(in oklab, var(--bw-on-green) 35%, transparent);
+	border-top-color: var(--bw-on-green);
+	border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.wpcf7-spinner {
+		animation: bw-cf7-spin 700ms linear infinite;
+	}
+}
+
+@keyframes bw-cf7-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* ---------- Validierungs-/Erfolgsmeldungen ---------- */
+.wpcf7-not-valid-tip {
+	display: block;
+	margin-top: var(--bw-space-1);
+	color: var(--bw-color-danger);
+	font-family: var(--bw-font-body);
+	font-size: var(--bw-text-small);
+	text-transform: none;
+	letter-spacing: normal;
+}
+
+.wpcf7-response-output {
+	margin: var(--bw-space-4) 0 0;
+	padding: var(--bw-space-3) var(--bw-space-4);
+	border: none;
+	border-radius: var(--bw-radius-sm);
+	font-size: var(--bw-text-small);
+	background: color-mix(in oklab, var(--bw-color-grey) 10%, var(--bw-color-page-bg));
+	color: var(--bw-color-page-text);
+}
+
+.wpcf7-form.sent .wpcf7-response-output {
+	background: color-mix(in oklab, var(--bw-color-green) 12%, var(--bw-color-page-bg));
+	color: var(--bw-color-green);
+}
+
+.wpcf7-form.invalid .wpcf7-response-output,
+.wpcf7-form.failed .wpcf7-response-output,
+.wpcf7-form.spam .wpcf7-response-output {
+	background: color-mix(in oklab, var(--bw-color-danger) 12%, var(--bw-color-page-bg));
+	color: var(--bw-color-danger);
+}

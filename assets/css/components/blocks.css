@@ -1172,3 +1172,33 @@
 		pointer-events: auto;
 	}
 }
+
+/* ---------- Kontakt-Block (§21 einfache Fade-Elemente reichen — komplexe
+   Scroll-Choreografie wäre hier ohne Mehrwert) ---------- */
+.bw-contact-block__inner {
+	max-width: 640px;
+}
+
+.bw-contact-block__heading {
+	margin: 0 0 var(--bw-space-3);
+}
+
+.bw-contact-block__text {
+	color: var(--bw-color-muted);
+	margin: 0 0 var(--bw-space-6);
+}
+
+[data-bw-bg] .bw-contact-block__text {
+	color: inherit;
+	opacity: 0.85;
+}
+
+.bw-contact-block__form .wpcf7-form-control.wpcf7-submit {
+	width: 100%;
+}
+
+@media (min-width: 600px) {
+	.bw-contact-block__form .wpcf7-form-control.wpcf7-submit {
+		width: auto;
+	}
+}

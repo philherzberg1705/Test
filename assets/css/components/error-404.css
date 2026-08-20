@@ -1,0 +1,100 @@
+/**
+ * 404-Seite (§39). Bewusst simpel: großes 404-Numeral als reines
+ * Gestaltungselement (aria-hidden, siehe 404.php — H2 trägt die eigentliche
+ * Überschrift), Such-Eingabe im .bw-input/.bw-btn-Design-System, dezente
+ * Einblend-Animation ohne Layoutbezug (rein transform/opacity, §26).
+ */
+
+.bw-404 {
+	max-width: 640px;
+	padding-block: var(--bw-space-9) var(--bw-space-10);
+	text-align: center;
+}
+
+.bw-404__eyebrow {
+	font-family: var(--bw-font-heading);
+	font-size: var(--bw-text-label);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--bw-color-terrakotta);
+	margin: 0 0 var(--bw-space-2);
+}
+
+.bw-404__code {
+	font-family: var(--bw-font-heading);
+	font-size: clamp(5rem, 4rem + 6vw, 9rem);
+	line-height: 1;
+	color: var(--bw-color-green);
+	margin: 0;
+}
+
+.bw-404__heading {
+	margin: var(--bw-space-3) 0 var(--bw-space-2);
+}
+
+.bw-404__text {
+	color: var(--bw-color-muted);
+	margin: 0 0 var(--bw-space-6);
+}
+
+.bw-404__search {
+	display: flex;
+	gap: var(--bw-space-3);
+	max-width: 420px;
+	margin: 0 auto var(--bw-space-7);
+}
+
+.bw-404__search-input {
+	flex: 1;
+}
+
+.bw-404__links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--bw-space-3);
+}
+
+@media (max-width: 599px) {
+	.bw-404__search {
+		flex-direction: column;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.bw-404__eyebrow,
+	.bw-404__code,
+	.bw-404__heading,
+	.bw-404__text,
+	.bw-404__search,
+	.bw-404__links {
+		animation: bw-404-fade-up var(--bw-duration-slow) var(--bw-ease-out) both;
+	}
+
+	.bw-404__code {
+		animation-delay: 40ms;
+	}
+	.bw-404__heading {
+		animation-delay: 80ms;
+	}
+	.bw-404__text {
+		animation-delay: 120ms;
+	}
+	.bw-404__search {
+		animation-delay: 160ms;
+	}
+	.bw-404__links {
+		animation-delay: 200ms;
+	}
+}
+
+@keyframes bw-404-fade-up {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

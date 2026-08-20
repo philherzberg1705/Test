@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bw/contact",
+	"title": "Kontakt",
+	"category": "bodywings",
+	"icon": "email-alt",
+	"description": "Kontakt-Abschnitt mit Headline, Text und einem eingebundenen Contact-Form-7-Formular.",
+	"textdomain": "bodywings",
+	"keywords": ["kontakt", "formular", "cf7", "contact form 7"],
+	"supports": { "align": ["wide", "full"], "anchor": true },
+	"attributes": {
+		"heading": { "type": "string", "default": "Kontakt" },
+		"text": { "type": "string", "default": "" },
+		"formId": { "type": "number", "default": 0 },
+		"bgColor": { "type": "string", "default": "" }
+	},
+	"editorScript": "bw-block-contact-edit",
+	"style": "bodywings-blocks-style",
+	"editorStyle": "bodywings-blocks-editor-style"
+}

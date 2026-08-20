@@ -158,6 +158,12 @@
 				<field type="line">imageAlt</field>
 			</fields>
 		</gutenberg-block>
+		<gutenberg-block type="bw/contact">
+			<fields>
+				<field type="line">heading</field>
+				<field type="area">text</field>
+			</fields>
+		</gutenberg-block>
 		<gutenberg-block type="bw/before-after">
 			<fields>
 				<field type="line">heading</field>
